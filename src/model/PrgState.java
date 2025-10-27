@@ -31,6 +31,18 @@ public class PrgState {
         return exeStack;
     }
 
+    public void setExeStack(MyIStack<IStmt> exeStack) {
+        this.exeStack = exeStack;
+    }
+
+    public void setSymTable(MyIDictionary<String, IValue> symTable) {
+        this.symTable = symTable;
+    }
+
+    public void setOut(MyIList<IValue> out) {
+        this.out = out;
+    }
+
     @Override
     public String toString() {
         return exeStack.toString()+" "+ symTable.toString()+ " " + out.toString();

@@ -33,6 +33,10 @@ public class ArithmeticalExpression implements IExp{
             } else if (op.equals(ArithmeticalOperation.MULTIPLY)) {
                 return new IntValue(intVal1.getVal() * intVal2.getVal());
             } else if(op.equals(ArithmeticalOperation.DIVIDE)) {
+                if(intVal2.getVal() == 0) {
+                    throw new MyException("Division by zero");
+                }
+
                 return new IntValue(intVal1.getVal() / intVal2.getVal());
             } else {
                 throw new  MyException("Invalid operator");
