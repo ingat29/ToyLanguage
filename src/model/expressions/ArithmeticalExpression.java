@@ -11,7 +11,7 @@ public class ArithmeticalExpression implements IExp{
     IExp exp2;
     ArithmeticalOperation op;
 
-    ArithmeticalExpression(IExp exp1, IExp exp2, ArithmeticalOperation op) {
+    public ArithmeticalExpression(ArithmeticalOperation op,IExp exp1, IExp exp2) {
         this.exp1 = exp1;
         this.exp2 = exp2;
         this.op = op;
@@ -49,7 +49,7 @@ public class ArithmeticalExpression implements IExp{
 
     @Override
     public IExp deepCopy() {
-        ArithmeticalExpression newArithmExp = new ArithmeticalExpression(exp1.deepCopy(), exp2.deepCopy(), op);
+        ArithmeticalExpression newArithmExp = new ArithmeticalExpression(op,exp1.deepCopy(), exp2.deepCopy());
         return newArithmExp;
     }
 }

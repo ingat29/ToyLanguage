@@ -11,7 +11,7 @@ public class MyController implements MyIController{
     MyIRepository repo;
     boolean displayFlag;
 
-    MyController(MyIRepository repo, boolean displayFlag){
+    public MyController(MyIRepository repo, boolean displayFlag){
         this.repo = repo;
         this.displayFlag = displayFlag;
     }
@@ -27,7 +27,7 @@ public class MyController implements MyIController{
     }
 
     @Override
-    public void allStep() {
+    public void allStep() throws MyException {
         PrgState prg = repo.getCrtPrg();
         displayPrgState(prg);
         while (!prg.getExeStack().isEmpty()){
@@ -35,7 +35,7 @@ public class MyController implements MyIController{
                 prg = oneStep(prg);
                 displayPrgState(prg);
             }catch (MyException e){
-                System.err.println(e.getMessage());
+                throw e;
             }
         }
     }

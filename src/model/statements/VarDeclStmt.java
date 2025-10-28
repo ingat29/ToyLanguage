@@ -16,6 +16,11 @@ public class VarDeclStmt implements IStmt{
     private IType type;
     private String varName;
 
+    public VarDeclStmt(String varName, IType type) {
+        this.varName = varName;
+        this.type = type;
+    }
+
     @Override
     public PrgState execute(PrgState state) throws MyException {
         MyIDictionary<String, IValue> dict = state.getSymTable();
@@ -45,7 +50,7 @@ public class VarDeclStmt implements IStmt{
 
     @Override
     public IStmt deepCopy() {
-        IStmt newVarDeclStmt = new VarDeclStmt();
+        IStmt newVarDeclStmt = new VarDeclStmt(this.varName, this.type);
         return newVarDeclStmt;
     }
 

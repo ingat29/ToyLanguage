@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Initial commit">
-      <change beforePath="$PROJECT_DIR$/src/model/PrgState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PrgState.java" afterDir="false" />
+    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Added Controller and Repository , also added division by zero check to ArithmeticalExpression">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ToyLanguage V1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MyIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MyIController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/expressions/ArithmeticalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expressions/ArithmeticalExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/statements/VarDeclStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/statements/VarDeclStmt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,24 +27,25 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="SimpleSourceFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ingat29"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ingat29&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ingat29/ToyLanguage.git",
-    "accountId": "872ef6f5-a0b9-4283-b1a6-c108947b9ab6"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ingat29/ToyLanguage.git&quot;,
+    &quot;accountId&quot;: &quot;872ef6f5-a0b9-4283-b1a6-c108947b9ab6&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -48,20 +56,28 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/david/IdeaProjects/ToyLanguage V1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
@@ -87,7 +103,10 @@
       <workItem from="1761059541128" duration="4667000" />
       <workItem from="1761399721113" duration="1057000" />
       <workItem from="1761408709674" duration="2514000" />
-      <workItem from="1761576628781" duration="4295000" />
+      <workItem from="1761576628781" duration="4864000" />
+      <workItem from="1761668028705" duration="191000" />
+      <workItem from="1761668237791" duration="510000" />
+      <workItem from="1761668778980" duration="4405000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -97,14 +116,34 @@
       <option name="project" value="LOCAL" />
       <updated>1761577201032</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Controller and Repository , also added division by zero check to ArithmeticalExpression">
+      <option name="closed" value="true" />
+      <created>1761581040671</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581040671</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Added Controller and Repository , also added division by zero check to ArithmeticalExpression" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Controller and Repository , also added division by zero check to ArithmeticalExpression" />
   </component>
 </project>
