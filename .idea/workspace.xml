@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Added Controller and Repository , also added division by zero check to ArithmeticalExpression">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ToyLanguage V1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/View.java" afterDir="false" />
+    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Added view , currently broken doesn't display nothing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MyIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MyIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/expressions/ArithmeticalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expressions/ArithmeticalExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/statements/VarDeclStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/statements/VarDeclStmt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +98,7 @@
       <workItem from="1761576628781" duration="4864000" />
       <workItem from="1761668028705" duration="191000" />
       <workItem from="1761668237791" duration="510000" />
-      <workItem from="1761668778980" duration="4405000" />
+      <workItem from="1761668778980" duration="4609000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -124,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761581040671</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added view , currently broken doesn't display nothing">
+      <option name="closed" value="true" />
+      <created>1761673895543</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1761673895543</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +144,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Added Controller and Repository , also added division by zero check to ArithmeticalExpression" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Controller and Repository , also added division by zero check to ArithmeticalExpression" />
+    <MESSAGE value="Added view , currently broken doesn't display nothing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added view , currently broken doesn't display nothing" />
   </component>
 </project>

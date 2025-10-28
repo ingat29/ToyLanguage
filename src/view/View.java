@@ -62,9 +62,9 @@ public class View {
                         new CompStmt(new AssignmentStmt("a", new ValueExpression(new BoolValue(true))),
                                 new CompStmt(new IfStmt(new VariableExpression("a"),new AssignmentStmt("v",new ValueExpression(new IntValue(2))), new AssignmentStmt("v", new ValueExpression(new IntValue(3)))), new PrintStmt(new VariableExpression("v"))))));
 
-        prgState1 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(), new MyList<IValue>(),null);
-        prgState2 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(), new MyList<IValue>(),null);
-        prgState3 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(), new MyList<IValue>(),null);
+        prgState1 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(), new MyList<IValue>(),example1);
+        prgState2 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(), new MyList<IValue>(),example2);
+        prgState3 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(), new MyList<IValue>(),example3);
 
         prgList1 = new ArrayList<>();
         prgList1.add(prgState1);
@@ -100,11 +100,11 @@ public class View {
             try{
                 switch(command){
                     case "1": ctrlr1.allStep();
-
+                        break;
                     case "2": ctrlr2.allStep();
-
+                        break;
                     case "3": ctrlr3.allStep();
-
+                        break;
                     case "0": System.exit(0);
                 }
             }catch(MyException e){

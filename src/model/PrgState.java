@@ -17,6 +17,10 @@ public class PrgState {
         this.symTable = symtbl;
         this.out = ot;
         this.originalProgram = prg;
+
+        if (prg != null) {
+            stk.push(prg);
+        }
     }
 
     public MyIList<IValue> getOut() {
