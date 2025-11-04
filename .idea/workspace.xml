@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Fixed some little bugs">
+    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Changed display order of the stack so it's readable from left-&gt;right">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/adt/MyStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/adt/MyStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expressions/ArithmeticalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expressions/ArithmeticalExpression.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +103,7 @@
       <workItem from="1761679398761" duration="293000" />
       <workItem from="1761747112097" duration="697000" />
       <workItem from="1762172106573" duration="628000" />
-      <workItem from="1762273010155" duration="360000" />
+      <workItem from="1762273010155" duration="1418000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -137,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761679678668</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Changed display order of the stack so it's readable from left-&gt;right">
+      <option name="closed" value="true" />
+      <created>1762273510581</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762273510581</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +167,7 @@
     <MESSAGE value="Added Controller and Repository , also added division by zero check to ArithmeticalExpression" />
     <MESSAGE value="Added view , currently broken doesn't display nothing" />
     <MESSAGE value="Fixed some little bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some little bugs" />
+    <MESSAGE value="Changed display order of the stack so it's readable from left-&gt;right" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed display order of the stack so it's readable from left-&gt;right" />
   </component>
 </project>

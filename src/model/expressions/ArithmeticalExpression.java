@@ -52,4 +52,10 @@ public class ArithmeticalExpression implements IExp{
         ArithmeticalExpression newArithmExp = new ArithmeticalExpression(op,exp1.deepCopy(), exp2.deepCopy());
         return newArithmExp;
     }
+
+    @Override
+    public String toString(){
+
+        return "Arithmetical Expression Exp1:"+ exp1.toString() + " Exp2:" + exp2.toString() + "Operation" + op.toString();
+    }
 }
