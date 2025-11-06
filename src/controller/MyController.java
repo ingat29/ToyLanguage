@@ -48,7 +48,7 @@ public class MyController implements MyIController{
     @Override
     public void displayPrgState(PrgState state) {
         if(displayFlag){
-            System.out.println(state.toString());
+            System.out.println(state.toString() + "\n");
         }
     }
 }
