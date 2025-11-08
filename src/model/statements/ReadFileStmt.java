@@ -57,11 +57,11 @@ public class ReadFileStmt implements IStmt{
         }
         else throw new MyException("Either variable "+varName+" is not defined or its type is not IntType");
 
-        return null;
+        return state;
     }
 
     @Override
     public IStmt deepCopy() {
-        return null;
+        return new ReadFileStmt(exp, varName);
     }
 }

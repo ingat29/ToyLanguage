@@ -33,8 +33,7 @@ public class OpenRFileStmt implements IStmt{
 
                     fileTable.put(tempVal.getValue(), br);
                 }catch(IOException e){
-                    System.err.println(e.getMessage());
-                    return null;//maybe have to return state?
+                    throw new MyException(e.getMessage());
                 }
             }
             else throw new MyException("File path is already defined in file table");
