@@ -7,6 +7,7 @@ import model.expressions.IExp;
 import model.values.BoolValue;
 import model.values.IValue;
 import model.values.IntValue;
+import model.values.StringValue;
 
 public class AssignmentStmt implements IStmt {
     private IExp exp;
@@ -24,13 +25,19 @@ public class AssignmentStmt implements IStmt {
             IValue expEval = exp.eval(tempDict);
             boolean isExpEvalBool = expEval.getClass().equals(BoolValue.class);
             boolean isExpEvalInt = expEval.getClass().equals(IntValue.class);
+            boolean isExpEvalString = expEval.getClass().equals(StringValue.class);
+
             boolean isVarBool = tempDict.get(varName) instanceof BoolValue;
             boolean isVarInt = tempDict.get(varName) instanceof IntValue;
+            boolean isVarString = tempDict.get(varName) instanceof StringValue;
 
             if(isExpEvalBool && isVarBool) {
                 tempDict.put(varName, expEval);
             }
             else if(isVarInt && isExpEvalInt) {
+                tempDict.put(varName, expEval);
+            }
+            else if(isExpEvalString && isVarString){
                 tempDict.put(varName, expEval);
             }
             else {

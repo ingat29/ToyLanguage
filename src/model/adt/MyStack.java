@@ -27,17 +27,14 @@ public class MyStack<T> implements MyIStack<T> {
     @Override
     public String toStringFormatted() {
         String returnString = "";
-        int index = 0;
-        Stack auxStack = new Stack<>();
+
+        Stack<T> auxStack = new Stack<>();
         auxStack.addAll(stack);
 
+
         while (!auxStack.isEmpty()) {
-            if (index == 0) {
-                returnString ="Top-" + returnString + stack.pop().toString() + '\n';
-            }
-            else {
-                returnString =index + '-' + returnString + stack.peek().toString() + '\n';
-            }
+            T item = auxStack.pop();
+            returnString += item.toString() + "\n";
         }
 
         return returnString;

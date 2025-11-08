@@ -24,14 +24,14 @@ public class OpenRFileStmt implements IStmt{
         if(exp.eval(state.getSymTable()).getType().equals(new StringType())){
             StringValue tempVal = (StringValue) exp.eval(state.getSymTable());
 
-            MyIDictionary fileTable = state.getFileTable();
+            MyIDictionary<StringValue , BufferedReader> fileTable = state.getFileTable();
             if(!fileTable.isDefined(tempVal)) {
 
                 try{
                     FileReader fr = new FileReader(tempVal.getValue());
                     BufferedReader br = new BufferedReader(fr);
 
-                    fileTable.put(tempVal.getValue(), br);
+                    fileTable.put(tempVal, br);
                 }catch(IOException e){
                     throw new MyException(e.getMessage());
                 }

@@ -30,17 +30,17 @@ public class MyRepository implements MyIRepository {
     @Override
     public void logPrgStateExecution() throws MyException {
         try (PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)))) {
-            logFile.println("ExeStack:\n");
-            logFile.println(getCrtPrg().getExeStack().toStringFormatted());
+            logFile.print("ExeStack:\n");
+            logFile.print(getCrtPrg().getExeStack().toStringFormatted());
 
-            logFile.println("SymTable:\n");
-            logFile.println(getCrtPrg().getSymTable().toStringFormatted());
+            logFile.print("SymTable:\n");
+            logFile.print(getCrtPrg().getSymTable().toStringFormatted());
 
-            logFile.println("Out:\n");
-            logFile.println(getCrtPrg().getOut().toStringFormatted());
+            logFile.print("Out:\n");
+            logFile.print(getCrtPrg().getOut().toStringFormatted());
 
-            logFile.println("FileTable:\n");
-            logFile.println(getCrtPrg().getFileTable().toStringFormatted());
+            logFile.print("FileTable:\n");
+            logFile.print(getCrtPrg().getFileTable().toStringFormatted());
 
         } catch (IOException e) {
             throw new MyException("Error writing to log file: " + e.getMessage());
