@@ -2,21 +2,18 @@ package repository;
 
 import exception.MyException;
 import model.PrgState;
-import model.adt.MyStack;
-import model.statements.IStmt;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Stack;
 
-public class Repository implements MyIRepository {
+public class MyRepository implements MyIRepository {
     List<PrgState> prgList;
     String logFilePath;
 
-    public Repository(List<PrgState> prgList , String logFilePath) {
+    public MyRepository(List<PrgState> prgList , String logFilePath) {
         this.prgList = prgList;
         this.logFilePath = logFilePath;
     }

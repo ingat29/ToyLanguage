@@ -15,9 +15,8 @@ import model.values.BoolValue;
 import model.values.IValue;
 import model.values.IntValue;
 import repository.MyIRepository;
-import repository.Repository;
-import javax.management.ValueExp;
-import java.io.File;
+import repository.MyRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -71,11 +70,11 @@ public class View {
         prgList3 = new ArrayList<>();
         prgList3.add(prgState3);
 
-        repo1 = new Repository(prgList1,"log1.txt");
+        repo1 = new MyRepository(prgList1,"log1.txt");
         ctrlr1= new MyController(repo1,true);
-        repo2 = new Repository(prgList2,"log2.txt");
+        repo2 = new MyRepository(prgList2,"log2.txt");
         ctrlr2= new MyController(repo2,true);
-        repo3 = new Repository(prgList3,"log3.txt");
+        repo3 = new MyRepository(prgList3,"log3.txt");
         ctrlr3= new MyController(repo3,true);
     }
 
