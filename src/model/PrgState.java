@@ -5,10 +5,14 @@ import model.adt.MyIList;
 import model.adt.MyIStack;
 import model.statements.IStmt;
 import model.values.IValue;
+import model.values.StringValue;
+
+import java.io.BufferedReader;
 
 public class PrgState {
     private MyIStack<IStmt> exeStack;
     private MyIDictionary<String, IValue> symTable;
+    private MyIDictionary<StringValue, BufferedReader> fileTable;
     private MyIList<IValue> out;
     private IStmt originalProgram; //optional field, but good to have
 
@@ -34,6 +38,8 @@ public class PrgState {
     public MyIStack<IStmt> getExeStack() {
         return exeStack;
     }
+
+    public MyIDictionary<StringValue, BufferedReader> getFileTable() {return fileTable;}
 
     public void setExeStack(MyIStack<IStmt> exeStack) {
         this.exeStack = exeStack;

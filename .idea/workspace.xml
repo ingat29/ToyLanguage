@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Added newline when printing">
-      <change afterPath="$PROJECT_DIR$/src/model/types/StringType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/values/StringValue.java" afterDir="false" />
+    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Added StringType and StringValue , modified VarDeclStmt to use default values from the types , modified the printing during execution method , added a toStringFormatted for the exestack,dict and out list , have to implement the filetable for opening files">
+      <change afterPath="$PROJECT_DIR$/src/model/adt/FileTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/adt/MyDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/adt/MyDictionary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/adt/MyIDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/adt/MyIDictionary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/adt/MyIList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/adt/MyIList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/adt/MyIStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/adt/MyIStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/adt/MyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/adt/MyList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/adt/MyStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/adt/MyStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/statements/VarDeclStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/statements/VarDeclStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/types/BoolType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/types/BoolType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/types/IType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/types/IType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/types/IntType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/types/IntType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/MyIRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/MyIRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PrgState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PrgState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +106,7 @@
       <workItem from="1762172106573" duration="628000" />
       <workItem from="1762273010155" duration="3264000" />
       <workItem from="1762446959370" duration="6378000" />
-      <workItem from="1762594597048" duration="1040000" />
+      <workItem from="1762594597048" duration="1912000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -177,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762447215367</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added StringType and StringValue , modified VarDeclStmt to use default values from the types , modified the printing during execution method , added a toStringFormatted for the exestack,dict and out list , have to implement the filetable for opening files">
+      <option name="closed" value="true" />
+      <created>1762595786044</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762595786044</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +197,8 @@
     <MESSAGE value="Changed display order of the stack so it's readable from left-&gt;right" />
     <MESSAGE value="Added toString for ArithmeticalExpression" />
     <MESSAGE value="Added newline when printing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added newline when printing" />
+    <MESSAGE value="Added StringType and StringValue , modified VarDeclStmt to use default values from the types , modified the printing during execution method , added a toStringFormatted for the exestack,dict and out list" />
+    <MESSAGE value="Added StringType and StringValue , modified VarDeclStmt to use default values from the types , modified the printing during execution method , added a toStringFormatted for the exestack,dict and out list , have to implement the filetable for opening files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added StringType and StringValue , modified VarDeclStmt to use default values from the types , modified the printing during execution method , added a toStringFormatted for the exestack,dict and out list , have to implement the filetable for opening files" />
   </component>
 </project>
