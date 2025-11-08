@@ -29,6 +29,11 @@ public class FileTable implements MyIDictionary<StringValue, BufferedReader>{
     }
 
     @Override
+    public void remove(StringValue key) {
+        map.remove(key);
+    }
+
+    @Override
     public String toStringFormatted() {
         String returnString = "";
 

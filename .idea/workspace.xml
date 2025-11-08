@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Fixed minor bugs">
-      <change beforePath="$PROJECT_DIR$/src/model/values/BoolValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/values/BoolValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/values/IntValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/values/IntValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/values/StringValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/values/StringValue.java" afterDir="false" />
+    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Added override to equals() for value classes">
+      <change afterPath="$PROJECT_DIR$/src/model/statements/CloseRFileStmt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/statements/OpenRFileStmt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/statements/ReadFileStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +107,7 @@
       <workItem from="1762172106573" duration="628000" />
       <workItem from="1762273010155" duration="3264000" />
       <workItem from="1762446959370" duration="6378000" />
-      <workItem from="1762594597048" duration="3672000" />
+      <workItem from="1762594597048" duration="8693000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -188,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762597990286</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added override to equals() for value classes">
+      <option name="closed" value="true" />
+      <created>1762598560045</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1762598560045</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,6 +226,7 @@
     <MESSAGE value="Added StringType and StringValue , modified VarDeclStmt to use default values from the types , modified the printing during execution method , added a toStringFormatted for the exestack,dict and out list , have to implement the filetable for opening files" />
     <MESSAGE value="Added FileTable" />
     <MESSAGE value="Fixed minor bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bugs" />
+    <MESSAGE value="Added override to equals() for value classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added override to equals() for value classes" />
   </component>
 </project>

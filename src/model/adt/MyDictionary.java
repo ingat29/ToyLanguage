@@ -26,6 +26,11 @@ public class MyDictionary<K, V> implements MyIDictionary<K, V> {
     }
 
     @Override
+    public void remove(K key) {
+        map.remove(key);
+    }
+
+    @Override
     public String toStringFormatted() {
         String returnString = "";
 
