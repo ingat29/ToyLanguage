@@ -3,10 +3,7 @@ import controller.MyController;
 import controller.MyIController;
 import exception.MyException;
 import model.PrgState;
-import model.adt.MyDictionary;
-import model.adt.MyIStack;
-import model.adt.MyList;
-import model.adt.MyStack;
+import model.adt.*;
 import model.expressions.ArithmeticalExpression;
 import model.expressions.ArithmeticalOperation;
 import model.expressions.ValueExpression;
@@ -20,6 +17,7 @@ import model.values.IntValue;
 import repository.MyIRepository;
 import repository.Repository;
 import javax.management.ValueExp;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -62,9 +60,9 @@ public class View {
                         new CompStmt(new AssignmentStmt("a", new ValueExpression(new BoolValue(true))),
                                 new CompStmt(new IfStmt(new VariableExpression("a"),new AssignmentStmt("v",new ValueExpression(new IntValue(2))), new AssignmentStmt("v", new ValueExpression(new IntValue(3)))), new PrintStmt(new VariableExpression("v"))))));
 
-        prgState1 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(), new MyList<IValue>(),example1);
-        prgState2 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(), new MyList<IValue>(),example2);
-        prgState3 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(), new MyList<IValue>(),example3);
+        prgState1 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(),new FileTable(), new MyList<IValue>(),example1);
+        prgState2 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(),new FileTable(), new MyList<IValue>(),example2);
+        prgState3 = new PrgState(new MyStack<IStmt>(),new MyDictionary<String, IValue>(),new FileTable(), new MyList<IValue>(),example3);
 
         prgList1 = new ArrayList<>();
         prgList1.add(prgState1);
@@ -73,11 +71,11 @@ public class View {
         prgList3 = new ArrayList<>();
         prgList3.add(prgState3);
 
-        repo1 = new Repository(prgList1);
+        repo1 = new Repository(prgList1,"log1.txt");
         ctrlr1= new MyController(repo1,true);
-        repo2 = new Repository(prgList2);
+        repo2 = new Repository(prgList2,"log2.txt");
         ctrlr2= new MyController(repo2,true);
-        repo3 = new Repository(prgList3);
+        repo3 = new Repository(prgList3,"log3.txt");
         ctrlr3= new MyController(repo3,true);
     }
 

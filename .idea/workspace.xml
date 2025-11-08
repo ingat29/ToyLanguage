@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Added StringType and StringValue , modified VarDeclStmt to use default values from the types , modified the printing during execution method , added a toStringFormatted for the exestack,dict and out list , have to implement the filetable for opening files">
-      <change afterPath="$PROJECT_DIR$/src/model/adt/FileTable.java" afterDir="false" />
+    <list default="true" id="c8d69a07-3293-4c2d-af28-30054a764c28" name="Changes" comment="Added FileTable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/PrgState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PrgState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/adt/FileTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/adt/FileTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +107,7 @@
       <workItem from="1762172106573" duration="628000" />
       <workItem from="1762273010155" duration="3264000" />
       <workItem from="1762446959370" duration="6378000" />
-      <workItem from="1762594597048" duration="1912000" />
+      <workItem from="1762594597048" duration="3133000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -172,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762595786044</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added FileTable">
+      <option name="closed" value="true" />
+      <created>1762596667191</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762596667191</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,6 +208,7 @@
     <MESSAGE value="Added newline when printing" />
     <MESSAGE value="Added StringType and StringValue , modified VarDeclStmt to use default values from the types , modified the printing during execution method , added a toStringFormatted for the exestack,dict and out list" />
     <MESSAGE value="Added StringType and StringValue , modified VarDeclStmt to use default values from the types , modified the printing during execution method , added a toStringFormatted for the exestack,dict and out list , have to implement the filetable for opening files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added StringType and StringValue , modified VarDeclStmt to use default values from the types , modified the printing during execution method , added a toStringFormatted for the exestack,dict and out list , have to implement the filetable for opening files" />
+    <MESSAGE value="Added FileTable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added FileTable" />
   </component>
 </project>

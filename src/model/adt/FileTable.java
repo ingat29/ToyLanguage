@@ -9,7 +9,7 @@ import java.util.Map;
 public class FileTable implements MyIDictionary<StringValue, BufferedReader>{
     private final Map<StringValue,BufferedReader> map;
 
-    FileTable(){
+    public FileTable(){
         this.map = new HashMap<>();
     }
 

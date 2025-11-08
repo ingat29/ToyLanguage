@@ -16,9 +16,10 @@ public class PrgState {
     private MyIList<IValue> out;
     private IStmt originalProgram; //optional field, but good to have
 
-    public PrgState(MyIStack<IStmt> stk, MyIDictionary<String, IValue> symtbl, MyIList<IValue> ot, IStmt prg){
+    public PrgState(MyIStack<IStmt> stk, MyIDictionary<String, IValue> symtbl,MyIDictionary<StringValue, BufferedReader> fileTable, MyIList<IValue> ot, IStmt prg){
         this.exeStack = stk;
         this.symTable = symtbl;
+        this.fileTable = fileTable;
         this.out = ot;
         this.originalProgram = prg;
 
