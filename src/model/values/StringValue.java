@@ -1,5 +1,6 @@
 package model.values;
 
+import exception.MyException;
 import model.types.IType;
 import model.types.StringType;
 
@@ -12,6 +13,16 @@ public class StringValue implements IValue{
 
     public String getValue(){
         return value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof StringValue){
+            return value.equals(((StringValue)other).getValue());
+        }
+        else{
+            return false;//maybe should throw an error ?
+        }
     }
 
     @Override

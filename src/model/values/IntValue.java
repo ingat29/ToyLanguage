@@ -12,4 +12,13 @@ public class IntValue implements IValue{
         return String.valueOf(val);
     }
     public IType getType() { return new IntType();}
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if(other instanceof IntValue){
+            return val==((IntValue)other).val;
+        }
+        else return false;//maybe should throw an error ?
+    }
 }

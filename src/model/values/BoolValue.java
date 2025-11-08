@@ -13,4 +13,12 @@ public class BoolValue implements IValue
         return String.valueOf(val);
     }
     public IType getType() { return new BoolType();}
+
+    @Override
+    public boolean  equals(Object other) {
+        if(other instanceof BoolValue){
+            return val==((BoolValue)other).val;
+        }
+        else return false;//maybe should throw an error ?
+    }
 }
