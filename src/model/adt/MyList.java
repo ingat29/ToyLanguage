@@ -16,7 +16,21 @@ public class MyList<T>  implements MyIList<T> {
     }
 
     @Override
+    public String toStringFormatted() {
+        String returnString = "";
+
+        for(int i = 0 ; i < list.size(); i++) {
+            String item = list.get(i).toString();
+            returnString =returnString + item + '\n';
+        }
+
+        return returnString;
+    }
+
+    @Override
     public String toString() {
         return list.toString();
     }
+
+
 }

@@ -3,7 +3,7 @@ package model.adt;
 import java.util.Stack;
 
 public class MyStack<T> implements MyIStack<T> {
-    private final Stack<T> stack;
+    private Stack<T> stack;
 
     public MyStack() {
         stack = new Stack<>();
@@ -22,6 +22,25 @@ public class MyStack<T> implements MyIStack<T> {
     @Override
     public boolean isEmpty() {
         return stack.isEmpty();
+    }
+
+    @Override
+    public String toStringFormatted() {
+        String returnString = "";
+        int index = 0;
+        Stack auxStack = new Stack<>();
+        auxStack.addAll(stack);
+
+        while (!auxStack.isEmpty()) {
+            if (index == 0) {
+                returnString ="Top-" + returnString + stack.pop().toString() + '\n';
+            }
+            else {
+                returnString =index + '-' + returnString + stack.peek().toString() + '\n';
+            }
+        }
+
+        return returnString;
     }
 
     @Override

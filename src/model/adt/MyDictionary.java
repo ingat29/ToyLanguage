@@ -26,6 +26,20 @@ public class MyDictionary<K, V> implements MyIDictionary<K, V> {
     }
 
     @Override
+    public String toStringFormatted() {
+        String returnString = "";
+
+        for (Map.Entry<K, V> entry : map.entrySet()) {//map.entrySet() is a function that returns a set of entries of the map , we iterate through it
+            K key = entry.getKey();
+            V value = entry.getValue();
+
+            returnString = returnString + key + " ---> " + value + "\n";
+        }
+
+        return returnString;
+    }
+
+    @Override
     public String toString() {
         return map.toString();
     }
