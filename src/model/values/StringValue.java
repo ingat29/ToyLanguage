@@ -29,4 +29,9 @@ public class StringValue implements IValue{
     public IType getType() {
         return new StringType();
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

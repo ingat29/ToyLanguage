@@ -61,6 +61,11 @@ public class ReadFileStmt implements IStmt{
     }
 
     @Override
+    public String toString(){
+        return "ReadFileStmt ;file: " + exp.toString() + "; varName: " + varName;
+    }
+
+    @Override
     public IStmt deepCopy() {
         return new ReadFileStmt(exp, varName);
     }

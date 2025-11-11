@@ -44,6 +44,11 @@ public class CloseRFileStmt implements IStmt {
     }
 
     @Override
+    public String toString(){
+        return "CloseRFileStmt : " + exp.toString();
+    }
+
+    @Override
     public IStmt deepCopy() {
         return new CloseRFileStmt(exp);
     }
