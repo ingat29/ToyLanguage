@@ -3,6 +3,7 @@ package model.statements;
 import exception.MyException;
 import model.PrgState;
 import model.adt.MyIDictionary;
+import model.adt.MyIHeap;
 import model.expressions.IExp;
 import model.types.IntType;
 import model.types.StringType;
@@ -24,8 +25,10 @@ public class ReadFileStmt implements IStmt{
     @Override
     public PrgState execute(PrgState state) throws MyException {
         MyIDictionary<String,IValue> symTable = state.getSymTable();
+        MyIHeap heap = state.getHeap();
+
         if(symTable.isDefined(varName) && symTable.get(varName).getType().equals(new IntType())){
-            IValue tempVal = exp.eval(symTable);
+            IValue tempVal = exp.eval(symTable , heap);
 
             if(tempVal.getType().equals(new StringType())){
                 MyIDictionary<StringValue, BufferedReader> fileTable = state.getFileTable();

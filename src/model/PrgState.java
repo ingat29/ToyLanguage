@@ -1,6 +1,7 @@
 package model;
 
 import model.adt.MyIDictionary;
+import model.adt.MyIHeap;
 import model.adt.MyIList;
 import model.adt.MyIStack;
 import model.statements.IStmt;
@@ -14,14 +15,16 @@ public class PrgState {
     private MyIDictionary<String, IValue> symTable;
     private MyIDictionary<StringValue, BufferedReader> fileTable;
     private MyIList<IValue> out;
+    private MyIHeap heap;
     private IStmt originalProgram; //optional field, but good to have
 
-    public PrgState(MyIStack<IStmt> stk, MyIDictionary<String, IValue> symtbl,MyIDictionary<StringValue, BufferedReader> fileTable, MyIList<IValue> ot, IStmt prg){
+    public PrgState(MyIStack<IStmt> stk, MyIDictionary<String, IValue> symtbl,MyIDictionary<StringValue, BufferedReader> fileTable, MyIList<IValue> ot, IStmt prg ,MyIHeap heap) {
         this.exeStack = stk;
         this.symTable = symtbl;
         this.fileTable = fileTable;
         this.out = ot;
         this.originalProgram = prg;
+        this.heap = heap;
 
         if (prg != null) {
             stk.push(prg);
@@ -42,6 +45,12 @@ public class PrgState {
 
     public MyIDictionary<StringValue, BufferedReader> getFileTable() {return fileTable;}
 
+    public MyIHeap getHeap() {return heap;}
+
+    public void setFileTable(MyIDictionary<StringValue, BufferedReader> fileTable) {
+        this.fileTable = fileTable;
+    }
+
     public void setExeStack(MyIStack<IStmt> exeStack) {
         this.exeStack = exeStack;
     }
@@ -54,8 +63,16 @@ public class PrgState {
         this.out = out;
     }
 
+    public void setHeap(MyIHeap heap) {
+        this.heap = heap;
+    }
+
     @Override
     public String toString() {
-        return exeStack.toString()+" "+ symTable.toString()+ " " + out.toString();
+        return  "ExeStack:\n" + exeStack.toString() + "\n" +
+                "SymTable:\n" + symTable.toString() + "\n" +
+                "Out:\n" + out.toString() + "\n" +
+                "FileTable:\n" + fileTable.toStringFormatted() + "\n" +
+                "Heap:\n" + heap.toStringFormatted() + "\n";
     }
 }

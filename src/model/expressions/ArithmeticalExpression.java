@@ -2,6 +2,7 @@ package model.expressions;
 
 import exception.MyException;
 import model.adt.MyIDictionary;
+import model.adt.MyIHeap;
 import model.values.IValue;
 import model.types.IntType;
 import model.values.IntValue;
@@ -18,9 +19,9 @@ public class ArithmeticalExpression implements IExp{
     }
 
     @Override
-    public IValue eval(MyIDictionary<String, IValue> table) throws MyException {
-        IValue val1 = exp1.eval(table);
-        IValue val2 = exp2.eval(table);
+    public IValue eval(MyIDictionary<String, IValue> table , MyIHeap heap) throws MyException {
+        IValue val1 = exp1.eval(table , heap);
+        IValue val2 = exp2.eval(table , heap);
 
         if(val1.getType().equals(new IntType()) &&  val2.getType().equals(new IntType())) {
             IntValue intVal1 = (IntValue) val1;

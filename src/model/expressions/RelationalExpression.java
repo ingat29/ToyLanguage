@@ -4,6 +4,7 @@ import com.sun.jdi.BooleanValue;
 import com.sun.jdi.IntegerType;
 import exception.MyException;
 import model.adt.MyIDictionary;
+import model.adt.MyIHeap;
 import model.statements.IStmt;
 import model.types.IntType;
 import model.values.BoolValue;
@@ -22,9 +23,9 @@ public class RelationalExpression implements IExp {
     }
 
     @Override
-    public IValue eval(MyIDictionary<String, IValue> table) throws MyException {
-        IValue val1 = exp1.eval(table);
-        IValue val2 = exp2.eval(table);
+    public IValue eval(MyIDictionary<String, IValue> table , MyIHeap heap) throws MyException {
+        IValue val1 = exp1.eval(table,heap);
+        IValue val2 = exp2.eval(table,heap);
 
         if(val1.getType().equals(new IntType()) &&  val2.getType().equals(new IntType())) {
             int intval1 = ((IntValue)val1).getVal();

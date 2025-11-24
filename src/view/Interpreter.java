@@ -3,10 +3,7 @@ package view;
 import controller.MyController;
 import controller.MyIController;
 import model.PrgState;
-import model.adt.FileTable;
-import model.adt.MyDictionary;
-import model.adt.MyList;
-import model.adt.MyStack;
+import model.adt.*;
 import model.expressions.ArithmeticalExpression;
 import model.expressions.ArithmeticalOperation;
 import model.expressions.ValueExpression;
@@ -33,7 +30,7 @@ class Interpreter {
                 new CompStmt(new AssignmentStmt("v", new ValueExpression(new IntValue(2))),
                 new PrintStmt(new VariableExpression("v"))));
 
-        PrgState prg1 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex1);
+        PrgState prg1 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex1 , new MyHeap());
         List<PrgState> list1 = new ArrayList<>();
         list1.add(prg1);
         MyIRepository repo1 = new MyRepository(list1, "log1.txt");
@@ -46,7 +43,7 @@ class Interpreter {
                 new CompStmt(new AssignmentStmt("b", new ArithmeticalExpression(ArithmeticalOperation.ADD, new VariableExpression("a"), new ValueExpression(new IntValue(1)))),
                 new PrintStmt(new VariableExpression("b"))))));
 
-        PrgState prg2 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex2);
+        PrgState prg2 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex2,new MyHeap());
         List<PrgState> list2 = new ArrayList<>();
         list2.add(prg2);
         MyIRepository repo2 = new MyRepository(list2, "log2.txt");
@@ -60,7 +57,7 @@ class Interpreter {
                 new CompStmt(new IfStmt(new VariableExpression("a"), new AssignmentStmt("v", new ValueExpression(new IntValue(2))), new AssignmentStmt("v", new ValueExpression(new IntValue(3)))),
                 new PrintStmt(new VariableExpression("v"))))));
 
-        PrgState prg3 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex3);
+        PrgState prg3 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex3,new MyHeap());
         List<PrgState> list3 = new ArrayList<>();
         list3.add(prg3);
         MyIRepository repo3 = new MyRepository(list3, "log3.txt");
@@ -78,7 +75,7 @@ class Interpreter {
                 new CompStmt(new PrintStmt(new VariableExpression("varc")),
                 new CloseRFileStmt(new VariableExpression("varf"))))))))));
 
-        PrgState prg4 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex4);
+        PrgState prg4 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex4,new MyHeap());
         List<PrgState> list4 = new ArrayList<>();
         list4.add(prg4);
         MyIRepository repo4 = new MyRepository(list4, "log4.txt");
