@@ -42,6 +42,9 @@ public class MyRepository implements MyIRepository {
             logFile.print("FileTable:\n");
             logFile.print(getCrtPrg().getFileTable().toStringFormatted());
 
+            logFile.print("Heap:\n");
+            logFile.print(getCrtPrg().getHeap().toStringFormatted());
+
         } catch (IOException e) {
             throw new MyException("Error writing to log file: " + e.getMessage());
         }
