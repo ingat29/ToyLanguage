@@ -13,7 +13,7 @@ public class WhileStmt implements IStmt {
     IStmt body;
     IExp condition;
 
-    public WhileStmt(IStmt body, IExp condition) {
+    public WhileStmt(IExp condition,IStmt body) {
         this.body = body;
         this.condition = condition;
     }
@@ -40,5 +40,10 @@ public class WhileStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new WhileStmt(body.deepCopy(), condition.deepCopy());
+    }
+
+    @Override
+    public String toString() {
+        return "while(" + condition.toString() + "){" + body.toString() + "}";
     }
 }
