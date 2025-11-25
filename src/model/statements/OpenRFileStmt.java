@@ -50,6 +50,6 @@ public class OpenRFileStmt implements IStmt{
 
     @Override
     public IStmt deepCopy() {
-        return new OpenRFileStmt(exp);
+        return new OpenRFileStmt(exp.deepCopy());
     }
 }

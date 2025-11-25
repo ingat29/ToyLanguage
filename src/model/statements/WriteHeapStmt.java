@@ -49,6 +49,6 @@ public class WriteHeapStmt implements IStmt {
 
     @Override
     public IStmt deepCopy() {
-        return new WriteHeapStmt(varName, exp);
+        return new WriteHeapStmt(varName, exp.deepCopy());
     }
 }

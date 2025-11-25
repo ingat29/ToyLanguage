@@ -52,6 +52,6 @@ public class NewStmt implements IStmt{
 
     @Override
     public IStmt deepCopy() {
-        return new NewStmt(varName, exp);
+        return new NewStmt(varName, exp.deepCopy());
     }
 }
