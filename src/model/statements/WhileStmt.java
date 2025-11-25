@@ -39,7 +39,7 @@ public class WhileStmt implements IStmt {
 
     @Override
     public IStmt deepCopy() {
-        return new WhileStmt(body.deepCopy(), condition.deepCopy());
+        return new WhileStmt(condition.deepCopy(),body.deepCopy());
     }
 
     @Override
