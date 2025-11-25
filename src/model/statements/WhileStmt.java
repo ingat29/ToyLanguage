@@ -44,6 +44,6 @@ public class WhileStmt implements IStmt {
 
     @Override
     public String toString() {
-        return "while(" + condition.toString() + "){" + body.toString() + "}";
+        return "WhileStmt(" + condition.toString() + "){" + body.toString() + "}";
     }
 }

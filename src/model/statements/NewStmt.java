@@ -54,4 +54,9 @@ public class NewStmt implements IStmt{
     public IStmt deepCopy() {
         return new NewStmt(varName, exp.deepCopy());
     }
+
+    @Override
+    public String toString(){
+        return "NewStmt; var: " + varName + ", exp: " + exp.toString();
+    }
 }

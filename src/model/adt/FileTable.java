@@ -46,4 +46,9 @@ public class FileTable implements MyIDictionary<StringValue, BufferedReader>{
 
         return returnString;
     }
+
+    @Override
+    public Map<StringValue, BufferedReader> getContent() {
+        return map;
+    }
 }
