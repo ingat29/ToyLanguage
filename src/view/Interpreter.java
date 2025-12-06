@@ -1,5 +1,7 @@
 package view;
 
+import controller.MultiThreadController;
+import controller.MultiThreadControllerInterface;
 import controller.MyController;
 import controller.MyIController;
 import model.PrgState;
@@ -15,6 +17,8 @@ import model.values.IValue;
 import model.values.IntValue;
 import model.values.StringValue;
 
+import repository.MultiThreadRepository;
+import repository.MultiThreadRepositoryInterface;
 import repository.MyIRepository;
 import repository.MyRepository;
 import java.util.ArrayList;
@@ -135,6 +139,36 @@ class Interpreter {
         MyIRepository repo8 = new MyRepository(list8, "log8.txt");
         MyIController ctrl8 = new MyController(repo8, true);
 
+        // ----------------------------------------------------------------------------------------------------------------
+        // Example 9: CONCURRENT EXECUTION (Fork Statement)
+        // Ref int v; new(v,20); Ref Ref int a; new(a,v); new(v,30); print(rH(rH(a)))
+        // ----------------------------------------------------------------------------------------------------------------
+        // Lab 8 Example:
+        // int v; Ref int a; v=10; new(a,22);
+        // fork(wH(a,30); v=32; print(v); print(rH(a)));
+        // print(v); print(rH(a))
+        // ----------------------------------------------------------------------------------------------------------------
+
+        IStmt ex9 = new CompStmt(new VarDeclStmt("v", new IntType()),
+                new CompStmt(new VarDeclStmt("a", new RefType(new IntType())),
+                        new CompStmt(new AssignmentStmt("v", new ValueExpression(new IntValue(10))),
+                        new CompStmt(new NewStmt("a", new ValueExpression(new IntValue(22))),
+                        new CompStmt(
+                            new ForkStmt(
+                            new CompStmt(new WriteHeapStmt("a", new ValueExpression(new IntValue(30))),
+                            new CompStmt(new AssignmentStmt("v", new ValueExpression(new IntValue(32))),
+                            new CompStmt(new PrintStmt(new VariableExpression("v")),
+                            new PrintStmt(new ReadHeapExp(new VariableExpression("a"))))))
+                            ),
+                        new CompStmt(new PrintStmt(new VariableExpression("v")),
+                        new PrintStmt(new ReadHeapExp(new VariableExpression("a")))))))));
+
+        //we use MultiThreadRepository and MultiThreadController for this example
+        PrgState prg9 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex9, new MyHeap());
+
+        MultiThreadRepositoryInterface repo9 = new MultiThreadRepository(prg9, "log9.txt");
+        MultiThreadControllerInterface ctrl9 = new MultiThreadController(repo9, true);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
         menu.addCommand(new RunExample("1", ex1.toString(), ctrl1));
@@ -145,6 +179,7 @@ class Interpreter {
         menu.addCommand(new RunExample("6", exHeap2.toString(), ctrl6));
         menu.addCommand(new RunExample("7", exGC.toString(), ctrl7));
         menu.addCommand(new RunExample("8", exWhile.toString(), ctrl8));
+        menu.addCommand(new RunExample("9", ex9.toString(), ctrl9));
 
         menu.show();
     }

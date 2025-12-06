@@ -79,6 +79,10 @@ public class MultiThreadController implements MultiThreadControllerInterface{
         List<PrgState> prgList = removeCompletedPrg(repo.getPrgList());
 
         while (prgList.size() > 0) {
+
+            prgList.get(0).getHeap().SetContent(safeGarbageCollector(getAddrFromAllSymTables(prgList), //call for garbage collecter to clean up
+                                                                    prgList.get(0).getHeap().getContent()));
+
             try {
                 oneStepForAllPrg(prgList);
             } catch (InterruptedException e) {
