@@ -86,7 +86,7 @@ public class PrgState {
         return true;
     }
 
-    PrgState oneStep() throws MyException {
+    public PrgState oneStep() throws MyException {
         if(exeStack.isEmpty()){
             throw new MyException("PrgState stack is empty");
         }

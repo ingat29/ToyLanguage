@@ -11,9 +11,12 @@ import repository.MultiThreadRepositoryInterface;
 import repository.MyIRepository;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class MultiThreadController implements MultiThreadControllerInterface{
@@ -26,27 +29,68 @@ public class MultiThreadController implements MultiThreadControllerInterface{
         this.displayFlag = displayFlag;
     }
 
+    // - Step 14: Define oneStepForAllPrg
+    public void oneStepForAllPrg(List<PrgState> prgList) throws InterruptedException {
+        prgList.forEach(prg -> {
+            try {
+                repo.logPrgStateExecution(prg);
+            } catch (MyException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+
+        List<Callable<PrgState>> callList = prgList.stream()
+                .map((PrgState p) -> (Callable<PrgState>)(() -> {return p.oneStep();}))//HUHHHHH???
+                .collect(Collectors.toList());
+
+        List<PrgState> newPrgList = executor.invokeAll(callList).stream()//invokeAll returns a list of Futures of PrgStates
+                .map(future -> {
+                    try {
+                        return future.get();//wait for the task to finish , and map the future to the result(null or another prgstate)
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        return null;
+                    }
+                })
+                .filter(p -> p != null) //remove nulls (threads that didn't create a new thread)
+                .collect(Collectors.toList());
+
+        prgList.addAll(newPrgList);
+
+        prgList.forEach(prg -> {
+            try {
+                repo.logPrgStateExecution(prg);
+            } catch (MyException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+
+        try {//save the programs in the repo
+            repo.setPrgList(prgList);
+        } catch (MyException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     @Override
     public void allStep() throws MyException {
-        PrgState prg = repo.getCrtPrg();
-        if(displayFlag){
-            repo.logPrgStateExecution();
-        }
-        while (!prg.getExeStack().isEmpty()){
+        executor = Executors.newFixedThreadPool(2);
+
+        List<PrgState> prgList = removeCompletedPrg(repo.getPrgList());
+
+        while (prgList.size() > 0) {
             try {
-                prg = oneStep(prg);
-
-                prg.getHeap().SetContent(
-                        safeGarbageCollector(getAddrFromSymTable(prg.getSymTable().getContent()), prg.getHeap().getContent()));
-
-                if(displayFlag){
-                    repo.logPrgStateExecution();
-                }
+                oneStepForAllPrg(prgList);
+            } catch (InterruptedException e) {
+                throw new MyException(e.getMessage());
             }
-            catch (MyException e){
-                throw e;
-            }
+
+            prgList = removeCompletedPrg(repo.getPrgList());
         }
+
+        executor.shutdownNow();
+
+        repo.setPrgList(prgList);
     }
 
     @Override
@@ -75,7 +119,18 @@ public class MultiThreadController implements MultiThreadControllerInterface{
                 .collect(Collectors.toList());
     }
 
-    private List<Integer> getAddrFromHeap(List<Integer> symTableAddr, Map<Integer, IValue> heap) {//i need some explanations here
+
+    // Helper to get addresses from ALL threads at once
+    private List<Integer> getAddrFromAllSymTables(List<PrgState> prgList) {
+        return prgList.stream()
+                .map(p -> p.getSymTable().getContent().values())//here we have a list of lists
+                .flatMap(Collection::stream)//with flat map we turn it into a single list
+                .filter(v -> v instanceof RefValue)
+                .map(v -> ((RefValue)v).getAddress())
+                .collect(Collectors.toList());
+    }
+
+    private List<Integer> getAddrFromHeap(List<Integer> symTableAddr, Map<Integer, IValue> heap) {
         boolean changed = true;
         List<Integer> newAddr = new ArrayList<>(symTableAddr);
 
