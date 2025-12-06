@@ -114,7 +114,7 @@ class Interpreter {
                 new CompStmt(new VarDeclStmt("a", new RefType(new RefType(new IntType()))),
                 new CompStmt(new NewStmt("a", new VariableExpression("v")),
                 new CompStmt(new NewStmt("v", new ValueExpression(new IntValue(30))),
-                new PrintStmt(new ReadHeapExp(new ReadHeapExp(new VariableExpression("a")))))))));
+                new NewStmt("v", new ValueExpression(new IntValue(70))))))));
 
         PrgState prg7 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exGC,new MyHeap());
         List<PrgState> list7 = new ArrayList<>();

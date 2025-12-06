@@ -36,4 +36,10 @@ public class ReadHeapExp implements IExp{
     public IExp deepCopy() {
         return new ReadHeapExp(this.exp.deepCopy());
     }
+
+    @Override
+    public String toString() {
+        return "ReadHeapExp : " + exp.toString();
+    }
+
 }

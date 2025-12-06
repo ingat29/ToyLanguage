@@ -20,4 +20,9 @@ public class RefValue implements IValue{
     public IType getType() {
         return new RefType(locationType);
     }
+
+    @Override
+    public String toString() {
+        return "RefValue{" + "heapAddress=" + heapAddress + ", locationType=" + locationType.toString() + '}';
+    }
 }
