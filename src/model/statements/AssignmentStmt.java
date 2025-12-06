@@ -55,7 +55,7 @@ public class AssignmentStmt implements IStmt {
 
     @Override
     public String toString() {
-        return "AssignStmt;var: " + varName + " exp: " + exp.toString();
+        return "AssignStmt(var: " + varName + ",exp: " + exp.toString() +')';
     }
 
     @Override

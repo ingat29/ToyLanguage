@@ -57,6 +57,6 @@ public class NewStmt implements IStmt{
 
     @Override
     public String toString(){
-        return "NewStmt; var: " + varName + ", exp: " + exp.toString();
+        return "NewStmt(var: " + varName + ", exp: " + exp.toString() + ')';
     }
 }

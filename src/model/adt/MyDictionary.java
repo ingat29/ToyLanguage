@@ -50,6 +50,18 @@ public class MyDictionary<K, V> implements MyIDictionary<K, V> {
     }
 
     @Override
+    public MyIDictionary<K, V> deepCopy() {
+        MyIDictionary<K, V> copy = new MyDictionary<>();
+        for (Map.Entry<K, V> entry : map.entrySet()) {//map.entrySet() is a function that returns a set of entries of the map , we iterate through it
+            K key = entry.getKey();
+            V value = entry.getValue();
+
+            copy.put(key, value);
+        }
+        return copy;
+    }
+
+    @Override
     public String toString() {
         return map.toString();
     }

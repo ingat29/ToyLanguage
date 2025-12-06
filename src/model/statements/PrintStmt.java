@@ -23,7 +23,7 @@ public class PrintStmt implements IStmt{
 
     @Override
     public String toString(){
-        return "PrintStmt : " + exp.toString();
+        return "PrintStmt(" + exp.toString() + ')';
     }
 
     @Override

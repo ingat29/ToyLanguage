@@ -55,6 +55,6 @@ public class WriteHeapStmt implements IStmt {
     @Override
     public String toString()
     {
-        return "WriteHeapStmt : " + "varName : " + varName +", expression : " + exp.toString();
+        return "WriteHeapStmt(" + "varName: " + varName +", expression: " + exp.toString() + ')';
     }
 }

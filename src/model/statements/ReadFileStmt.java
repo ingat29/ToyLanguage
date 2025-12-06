@@ -65,7 +65,7 @@ public class ReadFileStmt implements IStmt{
 
     @Override
     public String toString(){
-        return "ReadFileStmt ;file: " + exp.toString() + "; varName: " + varName;
+        return "ReadFileStmt(file: " + exp.toString() + ",varName: " + varName + ')';
     }
 
     @Override

@@ -79,7 +79,7 @@ public class PrgState {
         this.heap = heap;
     }
 
-    boolean isNotCompleted(){
+    public boolean isNotCompleted(){
         if(exeStack.isEmpty()){
             return false;
         }

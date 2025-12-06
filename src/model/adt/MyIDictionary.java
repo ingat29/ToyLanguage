@@ -9,4 +9,5 @@ public interface MyIDictionary<K, V> {
     void remove(K key);
     String toStringFormatted();
     Map<K, V> getContent();
+    MyIDictionary<K,V> deepCopy();
 }

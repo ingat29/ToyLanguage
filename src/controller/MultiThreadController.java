@@ -13,11 +13,13 @@ import repository.MyIRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 
 public class MultiThreadController implements MultiThreadControllerInterface{
     MultiThreadRepositoryInterface repo;
     boolean displayFlag;
+    ExecutorService executor;
 
     public MultiThreadController(MultiThreadRepositoryInterface repo, boolean displayFlag){
         this.repo = repo;
@@ -57,6 +59,13 @@ public class MultiThreadController implements MultiThreadControllerInterface{
         if(displayFlag){
             System.out.println(state.toString() + "\n");
         }
+    }
+
+    @Override
+    public List<PrgState> removeCompletedPrg(List<PrgState> inPrgList) {
+        return inPrgList.stream()
+                .filter(p -> p.isNotCompleted())
+                .collect(Collectors.toList());
     }
 
     private List<Integer> getAddrFromSymTable(Map<String, IValue> symTable) {
