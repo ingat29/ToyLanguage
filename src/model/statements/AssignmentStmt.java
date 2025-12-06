@@ -50,7 +50,7 @@ public class AssignmentStmt implements IStmt {
         else{
             throw new MyException("Variable " + varName + " is not defined");
         }
-        return state;
+        return null;
     }
 
     @Override

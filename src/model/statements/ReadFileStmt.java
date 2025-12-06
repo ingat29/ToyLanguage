@@ -60,7 +60,7 @@ public class ReadFileStmt implements IStmt{
         }
         else throw new MyException("Either variable "+varName+" is not defined or its type is not IntType");
 
-        return state;
+        return null;
     }
 
     @Override

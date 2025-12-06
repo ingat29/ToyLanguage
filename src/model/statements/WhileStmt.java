@@ -34,7 +34,7 @@ public class WhileStmt implements IStmt {
             stack.push(body);
         }
 
-        return state;
+        return null;
     }
 
     @Override

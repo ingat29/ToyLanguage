@@ -25,7 +25,7 @@ public class VarDeclStmt implements IStmt {
             dict.put(varName, type.defaultValue());
         }
 
-        return state;
+        return null;
     }
 
     @Override

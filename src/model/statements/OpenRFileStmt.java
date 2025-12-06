@@ -40,7 +40,7 @@ public class OpenRFileStmt implements IStmt{
         }
         else throw new MyException("Expression evaluation is not a StringValue");
 
-        return state;
+        return null;
     }
 
     @Override

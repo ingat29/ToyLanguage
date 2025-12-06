@@ -47,7 +47,7 @@ public class NewStmt implements IStmt{
 
         symTbl.put(varName, new RefValue(newAdress,varLocationType));
 
-        return state;
+        return null;
     }
 
     @Override
