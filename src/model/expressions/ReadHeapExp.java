@@ -3,6 +3,7 @@ package model.expressions;
 import exception.MyException;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
+import model.types.IType;
 import model.types.RefType;
 import model.values.IValue;
 import model.values.RefValue;
@@ -35,6 +36,17 @@ public class ReadHeapExp implements IExp{
     @Override
     public IExp deepCopy() {
         return new ReadHeapExp(this.exp.deepCopy());
+    }
+
+    @Override
+    public IType typeCheck(MyIDictionary<String, IType> typeEnv) throws MyException {
+        IType expType = exp.typeCheck(typeEnv);
+        if(expType instanceof RefType){//why instanceof and not .equals
+            RefType refTyp = (RefType) expType;
+            return refTyp.getInner();
+        }else{
+            throw new MyException("RH expression is not a ref type");
+        }
     }
 
     @Override
