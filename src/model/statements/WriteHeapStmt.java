@@ -2,6 +2,7 @@ package model.statements;
 
 import exception.MyException;
 import model.PrgState;
+import model.adt.MyIDictionary;
 import model.expressions.IExp;
 import model.types.IType;
 import model.types.RefType;
@@ -50,6 +51,21 @@ public class WriteHeapStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new WriteHeapStmt(varName, exp.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws MyException {
+        IType varType = typeEnv.get(varName);
+        if (varType instanceof RefType) {
+            RefType refType = (RefType) varType;
+            IType locationType = refType.getInner();
+            IType typeExp = exp.typeCheck(typeEnv);
+            if (locationType.equals(typeExp)) {
+                return typeEnv;
+            }else throw new MyException("WriteHeap : variable type and expression type mismatch");
+        }else{
+            throw new MyException("WriteHeap : variable type not RefType");
+        }
     }
 
     @Override

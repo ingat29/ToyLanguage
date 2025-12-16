@@ -56,6 +56,18 @@ public class NewStmt implements IStmt{
     }
 
     @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws MyException {
+        IType typeVar = typeEnv.get(varName);
+        IType typeExp = exp.typeCheck(typeEnv);
+
+        if (typeVar.equals(typeExp)) {
+            return typeEnv;
+        }else{
+            throw new MyException("NewStmt : variable and expression type mismatch");
+        }
+    }
+
+    @Override
     public String toString(){
         return "NewStmt(var: " + varName + ", exp: " + exp.toString() + ')';
     }

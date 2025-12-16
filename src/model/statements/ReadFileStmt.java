@@ -5,6 +5,7 @@ import model.PrgState;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
 import model.expressions.IExp;
+import model.types.IType;
 import model.types.IntType;
 import model.types.StringType;
 import model.values.IValue;
@@ -71,5 +72,20 @@ public class ReadFileStmt implements IStmt{
     @Override
     public IStmt deepCopy() {
         return new ReadFileStmt(exp.deepCopy(), varName);
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws MyException {
+        IType typeVar = typeEnv.get(varName);
+        if(typeVar instanceof IntType){
+            IType typeExp = exp.typeCheck(typeEnv);
+            if(typeExp.equals(new StringType())){
+                return typeEnv;
+            }else{
+                throw new MyException("ReadFile : expression does not evaluate to a stringtype");
+            }
+        }else{
+            throw new MyException("ReadFile : variable is not an integer");
+        }
     }
 }

@@ -5,6 +5,7 @@ import model.PrgState;
 import model.adt.FileTable;
 import model.adt.MyIDictionary;
 import model.expressions.IExp;
+import model.types.IType;
 import model.types.StringType;
 import model.values.StringValue;
 
@@ -51,5 +52,15 @@ public class OpenRFileStmt implements IStmt{
     @Override
     public IStmt deepCopy() {
         return new OpenRFileStmt(exp.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws MyException {
+        IType typeExp = exp.typeCheck(typeEnv);
+        if (typeExp.equals(new StringType())) {
+            return typeEnv;
+        }else{
+            throw new MyException("OpenReadFile : Expression evaluation is not a StringValue");
+        }
     }
 }

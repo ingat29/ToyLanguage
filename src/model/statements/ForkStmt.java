@@ -4,6 +4,7 @@ import exception.MyException;
 import model.PrgState;
 import model.adt.*;
 import model.statements.IStmt;
+import model.types.IType;
 import model.values.IValue;
 import model.values.StringValue;
 
@@ -32,6 +33,12 @@ public class ForkStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new ForkStmt(stmt.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws MyException {
+        stmt.typeCheck(typeEnv.deepCopy());
+        return typeEnv;
     }
 
     @Override

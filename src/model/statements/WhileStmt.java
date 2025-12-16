@@ -2,6 +2,7 @@ package model.statements;
 
 import exception.MyException;
 import model.PrgState;
+import model.adt.MyIDictionary;
 import model.adt.MyIStack;
 import model.expressions.IExp;
 import model.types.BoolType;
@@ -40,6 +41,17 @@ public class WhileStmt implements IStmt {
     @Override
     public IStmt deepCopy() {
         return new WhileStmt(condition.deepCopy(),body.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws MyException {
+        IType typeExp = condition.typeCheck(typeEnv);
+        if(typeExp.equals(new BoolType())){
+            body.typeCheck(typeEnv.deepCopy());
+            return typeEnv;
+        }else{
+            throw new MyException("WhileStmt : Condition Type is not BoolType");
+        }
     }
 
     @Override

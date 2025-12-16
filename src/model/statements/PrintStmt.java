@@ -2,8 +2,10 @@ package model.statements;
 
 import exception.MyException;
 import model.PrgState;
+import model.adt.MyIDictionary;
 import model.adt.MyIList;
 import model.expressions.IExp;
+import model.types.IType;
 import model.values.IValue;
 
 public class PrintStmt implements IStmt{
@@ -30,5 +32,11 @@ public class PrintStmt implements IStmt{
     public IStmt deepCopy() {
         IStmt newPrintStmt = new PrintStmt(exp.deepCopy());
         return newPrintStmt;
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws MyException {
+        exp.typeCheck(typeEnv);
+        return typeEnv;
     }
 }

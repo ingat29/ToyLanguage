@@ -5,6 +5,7 @@ import model.PrgState;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
 import model.expressions.IExp;
+import model.types.IType;
 import model.values.BoolValue;
 import model.values.IValue;
 import model.values.IntValue;
@@ -62,5 +63,17 @@ public class AssignmentStmt implements IStmt {
     public IStmt deepCopy() {
         IStmt newAssignmentStmt = new AssignmentStmt(this.varName, this.exp.deepCopy());
         return newAssignmentStmt;
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws MyException {
+        IType typeVar = typeEnv.get(varName);
+        IType typeExp = exp.typeCheck(typeEnv);
+
+        if(typeVar.equals(typeExp)){
+            return typeEnv;
+        }else{
+            throw new MyException("Assignment : Variable type and expression type mismatch");
+        }
     }
 }
