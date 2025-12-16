@@ -60,7 +60,7 @@ public class NewStmt implements IStmt{
         IType typeVar = typeEnv.get(varName);
         IType typeExp = exp.typeCheck(typeEnv);
 
-        if (typeVar.equals(typeExp)) {
+        if (typeVar.equals(new RefType(typeExp))){
             return typeEnv;
         }else{
             throw new MyException("NewStmt : variable and expression type mismatch");
