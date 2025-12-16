@@ -27,6 +27,7 @@ public class RunExample extends Command {
                 ctr.allStep();
             } else if (mCtr != null) {
                 mCtr.allStep();
+
             }
         } catch (MyException e) {
             System.err.println(e.getMessage());
