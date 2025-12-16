@@ -4,14 +4,12 @@ import controller.MultiThreadController;
 import controller.MultiThreadControllerInterface;
 import controller.MyController;
 import controller.MyIController;
+import exception.MyException;
 import model.PrgState;
 import model.adt.*;
 import model.expressions.*;
 import model.statements.*;
-import model.types.BoolType;
-import model.types.IntType;
-import model.types.RefType;
-import model.types.StringType;
+import model.types.*;
 import model.values.BoolValue;
 import model.values.IValue;
 import model.values.IntValue;
@@ -21,36 +19,55 @@ import repository.MultiThreadRepository;
 import repository.MultiThreadRepositoryInterface;
 import repository.MyIRepository;
 import repository.MyRepository;
+
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
 class Interpreter {
     public static void main(String[] args) {
+        TextMenu menu = new TextMenu();
+        menu.addCommand(new ExitCommand("0", "exit"));
 
         // Example 1: int v; v=2; Print(v)
         IStmt ex1 = new CompStmt(new VarDeclStmt("v", new IntType()),
                 new CompStmt(new AssignmentStmt("v", new ValueExpression(new IntValue(2))),
                 new PrintStmt(new VariableExpression("v"))));
 
-        PrgState prg1 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex1 , new MyHeap());
-        List<PrgState> list1 = new ArrayList<>();
-        list1.add(prg1);
-        MyIRepository repo1 = new MyRepository(list1, "log1.txt");
-        MyIController ctrl1 = new MyController(repo1, true);
+        try{
+            MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String,IType>();
+            ex1.typeCheck(tempTypeEnv);
 
+            PrgState prg1 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex1 , new MyHeap());
+            List<PrgState> list1 = new ArrayList<>();
+            list1.add(prg1);
+            MyIRepository repo1 = new MyRepository(list1, "log1.txt");
+            MyIController ctrl1 = new MyController(repo1, true);
+            menu.addCommand(new RunExample("1", ex1.toString(), ctrl1));
+        }catch(MyException e){
+            System.err.println("Type check failed for ex 1");
+            System.err.println(e.getMessage());
+        }
         // Example 2: int a; int b; a=2+3*5; b=a+1; Print(b)
         IStmt ex2 = new CompStmt(new VarDeclStmt("a", new IntType()),
                 new CompStmt(new VarDeclStmt("b", new IntType()),
                 new CompStmt(new AssignmentStmt("a", new ArithmeticalExpression(ArithmeticalOperation.ADD, new ValueExpression(new IntValue(2)), new ArithmeticalExpression(ArithmeticalOperation.MULTIPLY, new ValueExpression(new IntValue(3)), new ValueExpression(new IntValue(5))))),
                 new CompStmt(new AssignmentStmt("b", new ArithmeticalExpression(ArithmeticalOperation.ADD, new VariableExpression("a"), new ValueExpression(new IntValue(1)))),
                 new PrintStmt(new VariableExpression("b"))))));
+        try{
+            MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String,IType>();
+            ex2.typeCheck(tempTypeEnv);
 
-        PrgState prg2 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex2,new MyHeap());
-        List<PrgState> list2 = new ArrayList<>();
-        list2.add(prg2);
-        MyIRepository repo2 = new MyRepository(list2, "log2.txt");
-        MyIController ctrl2 = new MyController(repo2, true);
-
+            PrgState prg2 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex2, new MyHeap());
+            List<PrgState> list2 = new ArrayList<>();
+            list2.add(prg2);
+            MyIRepository repo2 = new MyRepository(list2, "log2.txt");
+            MyIController ctrl2 = new MyController(repo2, true);
+            menu.addCommand(new RunExample("2", ex2.toString(), ctrl2));
+        }catch(MyException e){
+            System.err.println("Type check failed for ex 2");
+            System.err.println(e.getMessage());
+        }
 
         // Example 3: bool a; int v; a=true; (If a Then v=2 Else v=3); Print(v)
         IStmt ex3 = new CompStmt(new VarDeclStmt("a", new BoolType()),
@@ -59,11 +76,20 @@ class Interpreter {
                 new CompStmt(new IfStmt(new VariableExpression("a"), new AssignmentStmt("v", new ValueExpression(new IntValue(2))), new AssignmentStmt("v", new ValueExpression(new IntValue(3)))),
                 new PrintStmt(new VariableExpression("v"))))));
 
-        PrgState prg3 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex3,new MyHeap());
-        List<PrgState> list3 = new ArrayList<>();
-        list3.add(prg3);
-        MyIRepository repo3 = new MyRepository(list3, "log3.txt");
-        MyIController ctrl3 = new MyController(repo3, true);
+        try {
+            MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
+            ex3.typeCheck(tempTypeEnv);
+
+            PrgState prg3 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex3, new MyHeap());
+            List<PrgState> list3 = new ArrayList<>();
+            list3.add(prg3);
+            MyIRepository repo3 = new MyRepository(list3, "log3.txt");
+            MyIController ctrl3 = new MyController(repo3, true);
+            menu.addCommand(new RunExample("3", ex3.toString(), ctrl3));
+        }catch (MyException e){
+            System.err.println("Type check failed for ex 3");
+            System.err.println(e.getMessage());
+        }
 
         // Example 4: File Operations (from Lab5.pdf)
         // string varf; varf="test.in"; openRFile(varf); int varc; readFile(varf,varc); print(varc); readFile(varf,varc); print(varc); closeRFile(varf)
@@ -76,12 +102,20 @@ class Interpreter {
                 new CompStmt(new ReadFileStmt(new VariableExpression("varf"), "varc"),
                 new CompStmt(new PrintStmt(new VariableExpression("varc")),
                 new CloseRFileStmt(new VariableExpression("varf"))))))))));
+        try {
+            MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
+            ex4.typeCheck(tempTypeEnv);
 
-        PrgState prg4 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex4,new MyHeap());
-        List<PrgState> list4 = new ArrayList<>();
-        list4.add(prg4);
-        MyIRepository repo4 = new MyRepository(list4, "log4.txt");
-        MyIController ctrl4 = new MyController(repo4, true);
+            PrgState prg4 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex4, new MyHeap());
+            List<PrgState> list4 = new ArrayList<>();
+            list4.add(prg4);
+            MyIRepository repo4 = new MyRepository(list4, "log4.txt");
+            MyIController ctrl4 = new MyController(repo4, true);
+            menu.addCommand(new RunExample("4", ex4.toString(), ctrl4));
+        }catch (MyException e){
+            System.err.println("Type check failed for ex 4");
+            System.err.println(e.getMessage());
+        }
 
         // Ref int v; new(v,20); Ref Ref int a; new(a,v); print(v); print(a)
         IStmt exHeap1 = new CompStmt(new VarDeclStmt("v", new RefType(new IntType())),
@@ -91,11 +125,20 @@ class Interpreter {
                 new CompStmt(new PrintStmt(new VariableExpression("v")),
                 new PrintStmt(new VariableExpression("a")))))));
 
-        PrgState prg5 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exHeap1,new MyHeap());
-        List<PrgState> list5 = new ArrayList<>();
-        list5.add(prg5);
-        MyIRepository repo5 = new MyRepository(list5, "log5.txt");
-        MyIController ctrl5 = new MyController(repo5, true);
+        try {
+            MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
+            exHeap1.typeCheck(tempTypeEnv);
+
+            PrgState prg5 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exHeap1, new MyHeap());
+            List<PrgState> list5 = new ArrayList<>();
+            list5.add(prg5);
+            MyIRepository repo5 = new MyRepository(list5, "log5.txt");
+            MyIController ctrl5 = new MyController(repo5, true);
+            menu.addCommand(new RunExample("5", exHeap1.toString(), ctrl5));
+        }catch (MyException e){
+            System.err.println("Type check failed for ex 5");
+            System.err.println(e.getMessage());
+        }
 
         // Ref int v; new(v,20); print(rH(v)); wH(v,30); print(rH(v)+5);
         IStmt exHeap2 = new CompStmt(new VarDeclStmt("v", new RefType(new IntType())),
@@ -106,11 +149,20 @@ class Interpreter {
                 new ReadHeapExp(new VariableExpression("v")),
                 new ValueExpression(new IntValue(5))))))));
 
-        PrgState prg6 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exHeap2,new MyHeap());
-        List<PrgState> list6 = new ArrayList<>();
-        list6.add(prg6);
-        MyIRepository repo6 = new MyRepository(list6, "log6.txt");
-        MyIController ctrl6 = new MyController(repo6, true);
+        try {
+            MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
+            exHeap2.typeCheck(tempTypeEnv);
+
+            PrgState prg6 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exHeap2, new MyHeap());
+            List<PrgState> list6 = new ArrayList<>();
+            list6.add(prg6);
+            MyIRepository repo6 = new MyRepository(list6, "log6.txt");
+            MyIController ctrl6 = new MyController(repo6, true);
+            menu.addCommand(new RunExample("6", exHeap2.toString(), ctrl6));
+        }catch (MyException e){
+            System.err.println("Type check failed for ex 6");
+            System.err.println(e.getMessage());
+        }
 
         // Ref int v; new(v,20); Ref Ref int a; new(a,v); new(v,30); print(rH(rH(a)))
         IStmt exGC = new CompStmt(new VarDeclStmt("v", new RefType(new IntType())),
@@ -120,11 +172,20 @@ class Interpreter {
                 new CompStmt(new NewStmt("v", new ValueExpression(new IntValue(30))),
                 new NewStmt("v", new ValueExpression(new IntValue(70))))))));
 
-        PrgState prg7 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exGC,new MyHeap());
-        List<PrgState> list7 = new ArrayList<>();
-        list7.add(prg7);
-        MyIRepository repo7 = new MyRepository(list7, "log7.txt");
-        MyIController ctrl7 = new MyController(repo7, true);
+        try {
+            MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
+            exGC.typeCheck(tempTypeEnv);
+
+            PrgState prg7 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exGC, new MyHeap());
+            List<PrgState> list7 = new ArrayList<>();
+            list7.add(prg7);
+            MyIRepository repo7 = new MyRepository(list7, "log7.txt");
+            MyIController ctrl7 = new MyController(repo7, true);
+            menu.addCommand(new RunExample("7", exGC.toString(), ctrl7));
+        }catch (MyException e){
+            System.err.println("Type check failed for ex 7");
+            System.err.println(e.getMessage());
+        }
 
         // int v; v=4; (while (v>0) print(v);v=v-1);print(v)
         IStmt exWhile = new CompStmt(new VarDeclStmt("v", new IntType()),
@@ -133,21 +194,28 @@ class Interpreter {
                 new CompStmt(new PrintStmt(new VariableExpression("v")), new AssignmentStmt("v", new ArithmeticalExpression(ArithmeticalOperation.SUBTRACT, new VariableExpression("v"), new ValueExpression(new IntValue(1)))))),
                 new PrintStmt(new VariableExpression("v")))));
 
-        PrgState prg8 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exWhile,new MyHeap());
-        List<PrgState> list8 = new ArrayList<>();
-        list8.add(prg8);
-        MyIRepository repo8 = new MyRepository(list8, "log8.txt");
-        MyIController ctrl8 = new MyController(repo8, true);
+        try {
+            MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
+            exWhile.typeCheck(tempTypeEnv);
 
-        // ----------------------------------------------------------------------------------------------------------------
+            PrgState prg8 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exWhile, new MyHeap());
+            List<PrgState> list8 = new ArrayList<>();
+            list8.add(prg8);
+            MyIRepository repo8 = new MyRepository(list8, "log8.txt");
+            MyIController ctrl8 = new MyController(repo8, true);
+            menu.addCommand(new RunExample("8", exWhile.toString(), ctrl8));
+        }catch  (MyException e){
+            System.err.println("Type check failed for ex 8");
+            System.err.println(e.getMessage());
+        }
+
         // Example 9: CONCURRENT EXECUTION (Fork Statement)
         // Ref int v; new(v,20); Ref Ref int a; new(a,v); new(v,30); print(rH(rH(a)))
-        // ----------------------------------------------------------------------------------------------------------------
+
         // Lab 8 Example:
         // int v; Ref int a; v=10; new(a,22);
         // fork(wH(a,30); v=32; print(v); print(rH(a)));
         // print(v); print(rH(a))
-        // ----------------------------------------------------------------------------------------------------------------
 
         IStmt ex9 = new CompStmt(new VarDeclStmt("v", new IntType()),
                 new CompStmt(new VarDeclStmt("a", new RefType(new IntType())),
@@ -164,22 +232,19 @@ class Interpreter {
                         new PrintStmt(new ReadHeapExp(new VariableExpression("a")))))))));
 
         //we use MultiThreadRepository and MultiThreadController for this example
-        PrgState prg9 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex9, new MyHeap());
+        try {
+            MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
+            ex9.typeCheck(tempTypeEnv);
 
-        MultiThreadRepositoryInterface repo9 = new MultiThreadRepository(prg9, "log9.txt");
-        MultiThreadControllerInterface ctrl9 = new MultiThreadController(repo9, true);
+            PrgState prg9 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex9, new MyHeap());
 
-        TextMenu menu = new TextMenu();
-        menu.addCommand(new ExitCommand("0", "exit"));
-        menu.addCommand(new RunExample("1", ex1.toString(), ctrl1));
-        menu.addCommand(new RunExample("2", ex2.toString(), ctrl2));
-        menu.addCommand(new RunExample("3", ex3.toString(), ctrl3));
-        menu.addCommand(new RunExample("4", ex4.toString(), ctrl4));
-        menu.addCommand(new RunExample("5", exHeap1.toString(), ctrl5));
-        menu.addCommand(new RunExample("6", exHeap2.toString(), ctrl6));
-        menu.addCommand(new RunExample("7", exGC.toString(), ctrl7));
-        menu.addCommand(new RunExample("8", exWhile.toString(), ctrl8));
-        menu.addCommand(new RunExample("9", ex9.toString(), ctrl9));
+            MultiThreadRepositoryInterface repo9 = new MultiThreadRepository(prg9, "log9.txt");
+            MultiThreadControllerInterface ctrl9 = new MultiThreadController(repo9, true);
+            menu.addCommand(new RunExample("9", ex9.toString(), ctrl9));
+        }catch (MyException e){
+            System.err.println("Type check failed for ex 9");
+            System.err.println(e.getMessage());
+        }
 
         menu.show();
     }
