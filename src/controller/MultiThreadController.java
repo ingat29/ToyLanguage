@@ -2,13 +2,9 @@ package controller;
 
 import exception.MyException;
 import model.PrgState;
-import model.adt.MyIStack;
-import model.statements.IStmt;
 import model.values.IValue;
 import model.values.RefValue;
-import repository.MultiThreadRepository;
 import repository.MultiThreadRepositoryInterface;
-import repository.MyIRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,13 +20,20 @@ public class MultiThreadController implements MultiThreadControllerInterface{
     boolean displayFlag;
     ExecutorService executor;
 
+    static int NUMBER_OF_THREADS = 2;
+
     public MultiThreadController(MultiThreadRepositoryInterface repo, boolean displayFlag){
         this.repo = repo;
         this.displayFlag = displayFlag;
+        this.executor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);//
     }
 
     // - Step 14: Define oneStepForAllPrg
     public void oneStepForAllPrg(List<PrgState> prgList) throws InterruptedException {
+        if (!prgList.isEmpty()) {
+            prgList.get(0).getHeap().setContent(safeGarbageCollector(getAddrFromAllSymTables(prgList), prgList.get(0).getHeap().getContent()));
+        }
+
         prgList.forEach(prg -> {
             try {
                 repo.logPrgStateExecution(prg);
@@ -80,7 +83,7 @@ public class MultiThreadController implements MultiThreadControllerInterface{
 
         while (prgList.size() > 0) {
 
-            prgList.get(0).getHeap().SetContent(safeGarbageCollector(getAddrFromAllSymTables(prgList), //call for garbage collecter to clean up
+            prgList.get(0).getHeap().setContent(safeGarbageCollector(getAddrFromAllSymTables(prgList), //call for garbage collecter to clean up
                                                                     prgList.get(0).getHeap().getContent()));
 
             try {

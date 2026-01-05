@@ -47,7 +47,7 @@ public class SelectController {
             MultiThreadRepository repo = new MultiThreadRepository(prg, "log.txt");
             MultiThreadController ctrl = new MultiThreadController(repo, true);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/gui/MainWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainWindow.fxml"));
             Parent root = loader.load();
 
              MainWindowController mainCtrl = loader.getController();

@@ -9,7 +9,6 @@ import model.adt.MyIStack;
 import model.statements.IStmt;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -44,7 +43,7 @@ public class MyController implements MyIController{
             try {
                 prg = oneStep(prg);
 
-                prg.getHeap().SetContent(
+                prg.getHeap().setContent(
                         safeGarbageCollector(getAddrFromSymTable(prg.getSymTable().getContent()), prg.getHeap().getContent()));
 
                 if(displayFlag){

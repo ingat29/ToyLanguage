@@ -53,7 +53,7 @@ public class MyHeap implements MyIHeap{
     }
 
     @Override
-    public void SetContent(Map<Integer, IValue> map) {
+    public void setContent(Map<Integer, IValue> map) {
         this.heap.clear();
         this.heap.putAll(map);
     }

@@ -91,9 +91,9 @@ class Interpreter {
         }
 
         // Example 4: File Operations (from Lab5.pdf)
-        // string varf; varf="test.in"; openRFile(varf); int varc; readFile(varf,varc); print(varc); readFile(varf,varc); print(varc); closeRFile(varf)
+        // string varf; varf="test.in.txt"; openRFile(varf); int varc; readFile(varf,varc); print(varc); readFile(varf,varc); print(varc); closeRFile(varf)
         IStmt ex4 = new CompStmt(new VarDeclStmt("varf", new StringType()),
-                new CompStmt(new AssignmentStmt("varf", new ValueExpression(new StringValue("test.in"))),
+                new CompStmt(new AssignmentStmt("varf", new ValueExpression(new StringValue("test.in.txt"))),
                 new CompStmt(new OpenRFileStmt(new VariableExpression("varf")),
                 new CompStmt(new VarDeclStmt("varc", new IntType()),
                 new CompStmt(new ReadFileStmt(new VariableExpression("varf"), "varc"),

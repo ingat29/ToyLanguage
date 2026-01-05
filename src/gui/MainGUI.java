@@ -55,7 +55,7 @@ public class MainGUI extends Application {
         list.add(ex3);
 
         IStmt ex4 = new CompStmt(new VarDeclStmt("varf", new StringType()),
-                new CompStmt(new AssignmentStmt("varf", new ValueExpression(new StringValue("test.in"))),
+                new CompStmt(new AssignmentStmt("varf", new ValueExpression(new StringValue("test.in.txt"))),
                 new CompStmt(new OpenRFileStmt(new VariableExpression("varf")),
                 new CompStmt(new VarDeclStmt("varc", new IntType()),
                 new CompStmt(new ReadFileStmt(new VariableExpression("varf"), "varc"),

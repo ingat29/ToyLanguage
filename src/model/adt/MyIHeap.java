@@ -13,6 +13,6 @@ public interface MyIHeap{
     String toStringFormatted();
     int allocate(IValue value);
 
-    void SetContent(Map<Integer, IValue> map);
+    void setContent(Map<Integer, IValue> map);
     Map<Integer, IValue> getContent();
 }
