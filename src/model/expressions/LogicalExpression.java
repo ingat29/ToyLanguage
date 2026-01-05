@@ -58,7 +58,7 @@ public class LogicalExpression implements IExp {
             if(type2.equals(new BoolType())){
                 return new BoolType();
             }else{
-                throw new MyException("Second operator is not boolean");
+                throw new MyException("LogicalExp : Second operator is not boolean");
             }
         }else{
             throw new  MyException("First operator is not boolean");

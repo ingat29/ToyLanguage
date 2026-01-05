@@ -20,7 +20,6 @@ import repository.MultiThreadRepositoryInterface;
 import repository.MyIRepository;
 import repository.MyRepository;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -209,10 +208,7 @@ class Interpreter {
             System.err.println(e.getMessage());
         }
 
-        // Example 9: CONCURRENT EXECUTION (Fork Statement)
-        // Ref int v; new(v,20); Ref Ref int a; new(a,v); new(v,30); print(rH(rH(a)))
-
-        // Lab 8 Example:
+        // ForkStmt example
         // int v; Ref int a; v=10; new(a,22);
         // fork(wH(a,30); v=32; print(v); print(rH(a)));
         // print(v); print(rH(a))
