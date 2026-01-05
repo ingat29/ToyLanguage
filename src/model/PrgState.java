@@ -39,7 +39,7 @@ public class PrgState {
         }
     }
 
-    private int getId() {
+    public int getId() {
         return id;
     }
 

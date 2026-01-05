@@ -116,6 +116,11 @@ public class MultiThreadController implements MultiThreadControllerInterface{
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public MultiThreadRepositoryInterface getRepo() {
+        return repo;
+    }
+
     private List<Integer> getAddrFromSymTable(Map<String, IValue> symTable) {
         return symTable.values().stream()
                 .filter(v -> v instanceof RefValue)

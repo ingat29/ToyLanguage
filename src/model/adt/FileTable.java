@@ -12,6 +12,9 @@ public class FileTable implements MyIDictionary<StringValue, BufferedReader>{
     public FileTable(){
         this.map = new HashMap<>();
     }
+    public FileTable(Map<StringValue,BufferedReader> map){
+        this.map = map;
+    }
 
     @Override
     public BufferedReader get(StringValue key) {
@@ -50,5 +53,10 @@ public class FileTable implements MyIDictionary<StringValue, BufferedReader>{
     @Override
     public Map<StringValue, BufferedReader> getContent() {
         return map;
+    }
+
+    @Override
+    public MyIDictionary<StringValue, BufferedReader> deepCopy() {
+        return new FileTable(map);
     }
 }
