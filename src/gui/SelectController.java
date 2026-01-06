@@ -50,7 +50,7 @@ public class SelectController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainWindow.fxml"));
             Parent root = loader.load();
 
-             MainWindowController mainCtrl = loader.getController();
+            MainWindowController mainCtrl = loader.getController();
             mainCtrl.setController(ctrl); //
 
             Stage stage = new Stage();

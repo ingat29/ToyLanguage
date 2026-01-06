@@ -35,13 +35,11 @@ public class MainWindowController {
 
     @FXML
     public void initialize() {
-        // Map table columns to the wrapper class properties
         heapAddressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         heapValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
         symVarNameColumn.setCellValueFactory(new PropertyValueFactory<>("variableName"));
         symValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
 
-        // Update SymTable and Stack when a different PrgState ID is clicked
         prgStateIdsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> populateUI());
     }
 

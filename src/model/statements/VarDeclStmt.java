@@ -41,6 +41,6 @@ public class VarDeclStmt implements IStmt {
 
     @Override
     public String toString() {
-        return "VarDeclStmt (varName: " + varName + ",type: " + type.toString() + ')';
+        return "VarDeclStmt(" + varName + "," + type.toString() + ')';
     }
 }
