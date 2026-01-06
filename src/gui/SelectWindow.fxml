@@ -5,11 +5,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SelectController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SelectController">
    <children>
       <Label text="Select a Program" />
-      <ListView fx:id="programsListView" prefHeight="350.0" prefWidth="600.0" />
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleRunProgram" prefHeight="26.0" prefWidth="97.0" text="Run Program" translateX="503.0" />
+      <ListView fx:id="programsListView" prefHeight="348.0" prefWidth="672.0" />
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleRunProgram" prefHeight="26.0" prefWidth="97.0" text="Run Program" translateX="927.0" />
    </children>
 </VBox>
