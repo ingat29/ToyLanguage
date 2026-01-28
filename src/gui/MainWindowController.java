@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 public class MainWindowController {
     private MultiThreadControllerInterface controller;
+    private boolean isUpdating = false;
 
     @FXML private TextField nrPrgStatesField;
     @FXML private TableView<HeapEntry> heapTableView;
@@ -60,6 +61,9 @@ public class MainWindowController {
     }
 
     private void populateUI() {
+        if (isUpdating) return;
+
+        isUpdating = true;
         try {
             List<PrgState> prgList = controller.getRepo().getPrgList();
             PrgState currentPrg = getCurrentSelectedPrgState(prgList);
@@ -91,6 +95,8 @@ public class MainWindowController {
             }
         } catch (MyException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } finally {
+            isUpdating = false;
         }
     }
 
