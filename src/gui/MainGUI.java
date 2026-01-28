@@ -108,7 +108,7 @@ public class MainGUI extends Application {
                         new CompStmt(new PrintStmt(new VariableExpression("v")),
                         new PrintStmt(new ReadHeapExp(new VariableExpression("a"))))))),
                 new CompStmt(new PrintStmt(new VariableExpression("v")),
-                new PrintStmt(new ReadHeapExp(new VariableExpression("a")))))))));
+                new CompStmt( new PrintStmt(new ReadHeapExp(new VariableExpression("a"))),new NopStmt())))))));
         list.add(ex9);
 
         return list;
