@@ -1,5 +1,6 @@
 package model.statements;
 
+import examPartTwo.MyILockTable;
 import exception.MyException;
 import model.PrgState;
 import model.adt.*;
@@ -26,8 +27,9 @@ public class ForkStmt implements IStmt {
         MyIHeap sharedHeap = state.getHeap();
         MyIDictionary<StringValue, BufferedReader> sharedFileTable = state.getFileTable();
         MyIList<IValue> sharedOut = state.getOut();
+        MyILockTable sharedLockTable = state.getLockTable();
 
-        return new PrgState(newStack, newSymTable, sharedFileTable, sharedOut, stmt, sharedHeap);
+        return new PrgState(newStack, newSymTable, sharedFileTable, sharedOut, stmt, sharedHeap , sharedLockTable);
     }
 
     @Override

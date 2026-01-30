@@ -9,6 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.PrgState;
 import model.statements.IStmt;
 import model.values.IValue;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -28,6 +30,9 @@ public class MainWindowController {
     @FXML private TableColumn<SymTblEntry, String> symVarNameColumn;
     @FXML private TableColumn<SymTblEntry, String> symValueColumn;
     @FXML private ListView<String> exeStackListView;
+    @FXML private TableView<LockTableEntry> lockTableView;
+    @FXML private TableColumn<LockTableEntry, Integer> lockLocationColumn;
+    @FXML private TableColumn<LockTableEntry, Integer> lockValueColumn;
 
     public void setController(MultiThreadControllerInterface controller) {
         this.controller = controller;
@@ -40,6 +45,8 @@ public class MainWindowController {
         heapValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
         symVarNameColumn.setCellValueFactory(new PropertyValueFactory<>("variableName"));
         symValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+        lockLocationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        lockValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
 
         prgStateIdsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> populateUI());
     }
@@ -80,6 +87,13 @@ public class MainWindowController {
                         first.getOut().toString().replace("[", "").replace("]", "").split(", ")));
                 fileTableListView.setItems(FXCollections.observableArrayList(
                         first.getFileTable().getContent().keySet().stream().map(Object::toString).collect(Collectors.toList())));
+
+                Map<Integer, Integer> lockContent = first.getLockTable().getContent();
+                List<LockTableEntry> lockEntries = new ArrayList<>();
+                for (Map.Entry<Integer, Integer> entry : lockContent.entrySet()) {
+                    lockEntries.add(new LockTableEntry(entry.getKey(), entry.getValue()));
+                }
+                lockTableView.setItems(FXCollections.observableArrayList(lockEntries));
             }
 
             prgStateIdsListView.setItems(FXCollections.observableArrayList(

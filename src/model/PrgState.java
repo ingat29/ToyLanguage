@@ -1,5 +1,6 @@
 package model;
 
+import examPartTwo.MyILockTable;
 import exception.MyException;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
@@ -17,6 +18,7 @@ public class PrgState {
     private MyIDictionary<StringValue, BufferedReader> fileTable;
     private MyIList<IValue> out;
     private MyIHeap heap;
+    private MyILockTable lockTable;
     private IStmt originalProgram; //optional field, but good to have
     private static int lastId = 0;
     private int id;
@@ -25,13 +27,14 @@ public class PrgState {
         return ++lastId;
     }
 
-    public PrgState(MyIStack<IStmt> stk, MyIDictionary<String, IValue> symtbl,MyIDictionary<StringValue, BufferedReader> fileTable, MyIList<IValue> ot, IStmt prg ,MyIHeap heap) {
+    public PrgState(MyIStack<IStmt> stk, MyIDictionary<String, IValue> symtbl,MyIDictionary<StringValue, BufferedReader> fileTable, MyIList<IValue> ot, IStmt prg ,MyIHeap heap,MyILockTable lockTable) {
         this.exeStack = stk;
         this.symTable = symtbl;
         this.fileTable = fileTable;
         this.out = ot;
         this.originalProgram = prg;
         this.heap = heap;
+        this.lockTable = lockTable;
         this.id = PrgState.getNewPrgStateId();
 
         if (prg != null) {
@@ -58,6 +61,8 @@ public class PrgState {
     public MyIDictionary<StringValue, BufferedReader> getFileTable() {return fileTable;}
 
     public MyIHeap getHeap() {return heap;}
+
+    public MyILockTable getLockTable() {return lockTable;}
 
     public void setFileTable(MyIDictionary<StringValue, BufferedReader> fileTable) {
         this.fileTable = fileTable;
@@ -101,6 +106,7 @@ public class PrgState {
                 "SymTable:\n" + symTable.toString() + "\n" +
                 "Out:\n" + out.toString() + "\n" +
                 "FileTable:\n" + fileTable.toStringFormatted() + "\n" +
-                "Heap:\n" + heap.toStringFormatted() + "\n";
+                "Heap:\n" + heap.toStringFormatted() + "\n" +
+                "LockTable:\n"+ lockTable.toStringFormatted() +"\n";
     }
 }

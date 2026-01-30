@@ -4,6 +4,7 @@ import controller.MultiThreadController;
 import controller.MultiThreadControllerInterface;
 import controller.MyController;
 import controller.MyIController;
+import examPartTwo.MyLockTable;
 import exception.MyException;
 import model.PrgState;
 import model.adt.*;
@@ -37,7 +38,7 @@ class Interpreter {
             MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String,IType>();
             ex1.typeCheck(tempTypeEnv);
 
-            PrgState prg1 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex1 , new MyHeap());
+            PrgState prg1 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex1 , new MyHeap(), new MyLockTable());
             List<PrgState> list1 = new ArrayList<>();
             list1.add(prg1);
             MyIRepository repo1 = new MyRepository(list1, "log1.txt");
@@ -57,7 +58,7 @@ class Interpreter {
             MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String,IType>();
             ex2.typeCheck(tempTypeEnv);
 
-            PrgState prg2 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex2, new MyHeap());
+            PrgState prg2 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex2, new MyHeap(), new MyLockTable());
             List<PrgState> list2 = new ArrayList<>();
             list2.add(prg2);
             MyIRepository repo2 = new MyRepository(list2, "log2.txt");
@@ -79,7 +80,7 @@ class Interpreter {
             MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
             ex3.typeCheck(tempTypeEnv);
 
-            PrgState prg3 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex3, new MyHeap());
+            PrgState prg3 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex3, new MyHeap(), new MyLockTable());
             List<PrgState> list3 = new ArrayList<>();
             list3.add(prg3);
             MyIRepository repo3 = new MyRepository(list3, "log3.txt");
@@ -105,7 +106,7 @@ class Interpreter {
             MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
             ex4.typeCheck(tempTypeEnv);
 
-            PrgState prg4 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex4, new MyHeap());
+            PrgState prg4 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex4, new MyHeap(), new MyLockTable());
             List<PrgState> list4 = new ArrayList<>();
             list4.add(prg4);
             MyIRepository repo4 = new MyRepository(list4, "log4.txt");
@@ -128,7 +129,7 @@ class Interpreter {
             MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
             exHeap1.typeCheck(tempTypeEnv);
 
-            PrgState prg5 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exHeap1, new MyHeap());
+            PrgState prg5 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exHeap1, new MyHeap(), new MyLockTable());
             List<PrgState> list5 = new ArrayList<>();
             list5.add(prg5);
             MyIRepository repo5 = new MyRepository(list5, "log5.txt");
@@ -152,7 +153,7 @@ class Interpreter {
             MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
             exHeap2.typeCheck(tempTypeEnv);
 
-            PrgState prg6 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exHeap2, new MyHeap());
+            PrgState prg6 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exHeap2, new MyHeap(), new MyLockTable());
             List<PrgState> list6 = new ArrayList<>();
             list6.add(prg6);
             MyIRepository repo6 = new MyRepository(list6, "log6.txt");
@@ -175,7 +176,7 @@ class Interpreter {
             MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
             exGC.typeCheck(tempTypeEnv);
 
-            PrgState prg7 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exGC, new MyHeap());
+            PrgState prg7 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exGC, new MyHeap(), new MyLockTable());
             List<PrgState> list7 = new ArrayList<>();
             list7.add(prg7);
             MyIRepository repo7 = new MyRepository(list7, "log7.txt");
@@ -197,7 +198,7 @@ class Interpreter {
             MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
             exWhile.typeCheck(tempTypeEnv);
 
-            PrgState prg8 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exWhile, new MyHeap());
+            PrgState prg8 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), exWhile, new MyHeap(), new MyLockTable());
             List<PrgState> list8 = new ArrayList<>();
             list8.add(prg8);
             MyIRepository repo8 = new MyRepository(list8, "log8.txt");
@@ -232,7 +233,7 @@ class Interpreter {
             MyIDictionary<String, IType> tempTypeEnv = new MyDictionary<String, IType>();
             ex9.typeCheck(tempTypeEnv);
 
-            PrgState prg9 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex9, new MyHeap());
+            PrgState prg9 = new PrgState(new MyStack<>(), new MyDictionary<>(), new FileTable(), new MyList<>(), ex9, new MyHeap(), new MyLockTable());
 
             MultiThreadRepositoryInterface repo9 = new MultiThreadRepository(prg9, "log9.txt");
             MultiThreadControllerInterface ctrl9 = new MultiThreadController(repo9, true);

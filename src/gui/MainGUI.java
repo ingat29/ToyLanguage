@@ -1,5 +1,8 @@
 package gui;
 import examPartOne.ForStmt;
+import examPartTwo.LockStmt;
+import examPartTwo.NewLockStmt;
+import examPartTwo.UnlockStmt;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -139,6 +142,68 @@ public class MainGUI extends Application {
                 )
         );
         list.add(forExample);
+
+        //CodeExample
+
+// Exam Program:
+// Ref int v1; Ref int v2; int x; int q;
+// new(v1,20); new(v2,30); newLock(x);
+// fork( fork( ); lock(x); wh(v1,rh(v1)-1); unlock(x); lock(x); wh(v1,rh(v1)*10); unlock(x) );
+// newLock(q);
+// fork( fork( lock(q); wh(v2,rh(v2)+5); unlock(q) ); lock(q); wh(v2,rh(v2)*10); unlock(q) );
+// nop; nop; nop; nop;
+// lock(x); print(rh(v1)); unlock(x);
+// lock(q); print(rh(v2)); unlock(q);
+
+        IStmt lockExample = new CompStmt(
+            new VarDeclStmt("v1", new RefType(new IntType())),
+            new CompStmt(new VarDeclStmt("v2", new RefType(new IntType())),
+                new CompStmt(new VarDeclStmt("x", new IntType()),
+                    new CompStmt(new VarDeclStmt("q", new IntType()),
+                        new CompStmt(new NewStmt("v1", new ValueExpression(new IntValue(20))),
+                            new CompStmt(new NewStmt("v2", new ValueExpression(new IntValue(30))),
+                                new CompStmt(new NewLockStmt("x"),
+                                    new CompStmt(
+                                        // First Fork
+                                        new ForkStmt(
+                                            new CompStmt(
+                                                new ForkStmt(new NopStmt()), // Empty fork() from the exam text
+                                                new CompStmt(new LockStmt("x"),
+                                                    new CompStmt(new WriteHeapStmt("v1", new ArithmeticalExpression(ArithmeticalOperation.SUBTRACT, new ReadHeapExp(new VariableExpression("v1")), new ValueExpression(new IntValue(1)))),
+                                                        new CompStmt(new UnlockStmt("x"),
+                                                            new CompStmt(new LockStmt("x"),
+                                                                new CompStmt(new WriteHeapStmt("v1", new ArithmeticalExpression(ArithmeticalOperation.MULTIPLY, new ReadHeapExp(new VariableExpression("v1")), new ValueExpression(new IntValue(10)))),
+                                                                    new UnlockStmt("x"))))))
+                                            )
+                                        ),
+                                        new CompStmt(new NewLockStmt("q"),
+                                            new CompStmt(
+                                                // Second Fork
+                                                new ForkStmt(
+                                                    new CompStmt(
+                                                        new ForkStmt( // fork(lock(q); wh(v2,rh(v2)+5); unlock(q));
+                                                            new CompStmt(new LockStmt("q"),
+                                                                new CompStmt(new WriteHeapStmt("v2", new ArithmeticalExpression(ArithmeticalOperation.ADD, new ReadHeapExp(new VariableExpression("v2")), new ValueExpression(new IntValue(5)))),
+                                                                    new UnlockStmt("q")))
+                                                        ),
+                                                        new CompStmt(new LockStmt("q"),
+                                                            new CompStmt(new WriteHeapStmt("v2", new ArithmeticalExpression(ArithmeticalOperation.MULTIPLY, new ReadHeapExp(new VariableExpression("v2")), new ValueExpression(new IntValue(10)))),
+                                                                new UnlockStmt("q")))
+                                                    )
+                                                ),
+                                                // Main Thread continuation
+                                                new CompStmt(new NopStmt(),
+                                                    new CompStmt(new NopStmt(),
+                                                        new CompStmt(new NopStmt(),
+                                                            new CompStmt(new NopStmt(),
+                                                                new CompStmt(new LockStmt("x"),
+                                                                    new CompStmt(new PrintStmt(new ReadHeapExp(new VariableExpression("v1"))),
+                                                                        new CompStmt(new UnlockStmt("x"),
+                                                                            new CompStmt(new LockStmt("q"),
+                                                                                new CompStmt(new PrintStmt(new ReadHeapExp(new VariableExpression("v2"))),
+                                                                                    new UnlockStmt("q"))))))))))))))))))));
+
+        list.add(lockExample);
 
         return list;
     }

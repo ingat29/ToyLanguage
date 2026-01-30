@@ -1,6 +1,7 @@
 package gui;
 
 import controller.MultiThreadController;
+import examPartTwo.MyLockTable;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +44,7 @@ public class SelectController {
 
             PrgState prg = new PrgState(new MyStack<>(), new MyDictionary<>(),
                     new FileTable(), new MyList<>(),
-                    selected, new MyHeap());
+                    selected, new MyHeap() , new MyLockTable());
             MultiThreadRepository repo = new MultiThreadRepository(prg, "log.txt");
             MultiThreadController ctrl = new MultiThreadController(repo, true);
 
