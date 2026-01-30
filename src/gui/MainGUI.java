@@ -1,4 +1,5 @@
 package gui;
+import examPartOne.ForStmt;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -110,6 +111,34 @@ public class MainGUI extends Application {
                 new CompStmt(new PrintStmt(new VariableExpression("v")),
                 new CompStmt( new PrintStmt(new ReadHeapExp(new VariableExpression("a"))),new NopStmt())))))));
         list.add(ex9);
+
+        // Ref int a; new(a,20); (for(v=0;v<3;v=v+1)fork(print(v);v=v*rh(a))); print(rh(a))
+        IStmt forExample = new CompStmt(
+                new VarDeclStmt("a", new RefType(new IntType())),
+                new CompStmt(
+                        new NewStmt("a", new ValueExpression(new IntValue(20))),
+                        new CompStmt(
+                                new ForStmt("v",
+                                        new ValueExpression(new IntValue(0)),
+                                        new ValueExpression(new IntValue(3)),
+                                        new ArithmeticalExpression(ArithmeticalOperation.ADD, new VariableExpression("v"), new ValueExpression(new IntValue(1))),
+                                        new ForkStmt(
+                                                new CompStmt(
+                                                        new PrintStmt(new VariableExpression("v")),
+                                                        new AssignmentStmt("v",
+                                                                new ArithmeticalExpression(ArithmeticalOperation.MULTIPLY,
+                                                                        new VariableExpression("v"),
+                                                                        new ReadHeapExp(new VariableExpression("a"))
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                ),
+                                new PrintStmt(new ReadHeapExp(new VariableExpression("a")))
+                        )
+                )
+        );
+        list.add(forExample);
 
         return list;
     }
